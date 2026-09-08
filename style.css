@@ -360,13 +360,39 @@ header { text-align: center; padding: 20px 20px 10px; }
 .btn-submit-exp { background: var(--text-primary); color: var(--bg-base); border: none; padding: 10px 16px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.78rem; cursor: pointer; align-self: flex-end; transition: opacity 0.2s; }
 .btn-submit-exp:hover { opacity: 0.9; }
 
-.cta-container { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 10px; 
-    margin-top: 20px;
+.cta-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 25px !important;
     padding-bottom: 40px !important;
 }
+
+.cta-container .btn-call {
+    background: var(--bg-base) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    text-align: center !important;
+    padding: 14px 0 !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    font-size: 0.88rem !important;
+    display: block !important;
+}
+
+.cta-container .btn-whatsapp {
+    background: #25d366 !important;
+    color: #fff !important;
+    text-align: center !important;
+    padding: 14px 0 !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    font-size: 0.88rem !important;
+    display: block !important;
+}
+
 
 
 .floating-cta {
