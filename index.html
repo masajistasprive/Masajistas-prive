@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title id="meta-title">Masajistas Privé | Portal Exclusivo de Masajes en Buenos Aires</title>
+
+  <meta name="theme-color" content="#080706">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Privé">
+  <link rel="apple-touch-icon" href="./logo-192.png">
+  <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Masajistas%20Priv%C3%A9%22%2C%22short_name%22%3A%22Priv%C3%A9%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23080706%22%2C%22theme_color%22%3A%22%23080706%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22.%2Flogo-192.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22.%2Flogo-512.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
+
+  <meta name="google-site-verification" content="4mx7RJnVc8b1XagyKzjTPyVuVjaWBB7UHCxK6i2Aph4" />
+  <meta name="description" content="Portal de masajes en Buenos Aires. Espacios privados, gabinetes y atención independiente en CABA.">
+  <meta name="keywords" content="masajistas prive, masajes buenos aires, masajistas caba, gabinete privado, alquiler de gabinetes, publicar masajista">
+  <meta name="robots" content="index, follow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #080706;
+      --bg-lighter: #13100c;
+      --card-bg: #1a1611;
+      --accent-gold: #d4af37;
+      --accent-gold-hover: #f3e5ab;
+      --text-primary: #ffffff;
+      --text-secondary: #b5ac9e;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, #201810 0%, #080706 70%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 60px 0 40px 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    input, textarea, select {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      user-select: text !important;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .hidden { display: none !important; }
+
+    .top-sticky-bar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      height: 50px;
+      background: rgba(19, 16, 12, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--accent-gold);
+      z-index: 10000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 15px; box-sizing: border-box;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    }
+
+    .top-brand-logos { display: flex; align-items: center; gap: 8px; }
+    .top-brand-logos img.logo-monograma { height: 32px; width: auto; display: block; }
+    .top-brand-logos img.logo-tipografia { height: 20px; width: auto; display: block; }
+
+    .top-bar-actions { display: flex; gap: 6px; align-items: center; }
+
+    .btn-quick-exit {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--accent-gold-hover);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 5px 8px; border-radius: 20px;
+      font-size: 0.7rem; cursor: pointer;
+      display: flex; align-items: center; gap: 3px;
+      font-weight: 600; transition: all 0.2s ease;
+    }
+
+    .btn-lang {
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .btn-top-search {
+      background: linear-gradient(135deg, #d4af37, #8a6d1c);
+      color: #000; font-weight: bold; border: none;
+      padding: 5px 10px; border-radius: 20px;
+      font-size: 0.75rem; cursor: pointer;
+      display: flex; align-items: center; gap: 4px;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+    }
+
+    .filter-drawer {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.92); z-index: 10001;
+      display: flex; justify-content: center; align-items: flex-start;
+      padding-top: 60px; box-sizing: border-box;
+    }
+
+    .filter-drawer-content {
+      background: var(--bg-lighter); border: 1px solid var(--accent-gold);
+      border-radius: 16px; padding: 20px; width: 90%; max-width: 450px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9); position: relative;
+    }
+
+    .filter-drawer-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 8px;
+    }
+
+    .filter-drawer-header h3 { font-family: 'Cinzel', serif; color: var(--accent-gold); margin: 0; font-size: 1.1rem; }
+    .filter-group { margin-bottom: 12px; }
+    .filter-group label { display: block; font-size: 0.72rem; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; }
+
+    .search-input, .search-select {
+      width: 100%; padding: 12px 15px; background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; color: #fff;
+      font-size: 0.9rem; box-sizing: border-box; outline: none;
+    }
+    .search-select option { background: #13100c; color: #fff; }
+
+    .age-gate {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.96); z-index: 20000;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 20px; box-sizing: border-box;
+    }
+
+    .age-gate-box {
+      background: var(--bg-lighter); border: 1px solid var(--accent-gold);
+      border-radius: 16px; padding: 30px 20px; max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    .age-gate h1 { font-family: 'Cinzel', serif; color: var(--accent-gold); font-size: 1.6rem; margin: 0 0 12px; }
+    .age-gate p { color: #ccc; font-size: 0.82rem; margin-bottom: 20px; line-height: 1.5; }
+    .age-gate-buttons { display: flex; flex-direction: column; gap: 10px; }
+    .btn-age-enter { background: linear-gradient(135deg, #d4af37, #8a6d1c); color: #000; font-weight: bold; border: none; padding: 12px; border-radius: 25px; font-size: 0.9rem; cursor: pointer; }
+    .btn-age-exit { background: rgba(255, 255, 255, 0.1); color: #aaa; font-weight: bold; border: 1px solid #444; padding: 10px; border-radius: 25px; font-size: 0.85rem; cursor: pointer; text-decoration: none; }
+
+    header { text-align: center; padding: 15px 15px 10px; }
+    .logo-container img { max-width: 220px; height: auto; display: inline-block; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 15px; }
+
+    .stories-container {
+      display: flex; gap: 12px; overflow-x: auto;
+      padding: 5px 0 15px; margin-bottom: 10px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .stories-container::-webkit-scrollbar { display: none; }
+    .story-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; flex: 0 0 auto; }
+    .story-avatar { width: 64px; height: 64px; border-radius: 50%; padding: 2px; border: 2px solid var(--accent-gold); object-fit: cover; object-position: top center; background: #000; }
+    .story-name { font-size: 0.7rem; color: var(--accent-gold-hover); margin-top: 4px; text-align: center; font-weight: 600; }
+
+    .category-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; -webkit-overflow-scrolling: touch; }
+    .category-tabs::-webkit-scrollbar { display: none; }
+    .tab-btn { white-space: nowrap; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); color: #ddd; padding: 8px 14px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s ease; font-weight: 600; }
+    .tab-btn.active, .tab-btn:hover { background: var(--accent-gold); color: #000; border-color: var(--accent-gold); }
+
+    .section-title-toggle {
+      font-family: 'Cinzel', serif; color: var(--accent-gold);
+      text-align: left; font-size: 1.1rem; margin: 20px 0 10px;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 8px;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      user-select: none;
+    }
+    .section-title-toggle.prive-header { color: #fff; font-size: 1.3rem; font-weight: 900; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); border-bottom: 2px solid var(--accent-gold); }
+    .toggle-icon { font-size: 0.9rem; transition: transform 0.3s ease; }
+    .category-content { transition: all 0.3s ease; }
+
+    .forum-section {
+      background: var(--bg-lighter); border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 12px; padding: 18px 15px; margin: 30px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    .forum-header { border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .forum-header h3 { font-family: 'Cinzel', serif; color: var(--accent-gold); margin: 0; font-size: 1.1rem; }
+    .forum-rules-notice { font-size: 0.68rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.4; background: rgba(255, 255, 255, 0.02); padding: 8px 10px; border-radius: 6px; border-left: 2px solid var(--accent-gold); }
+    .forum-thread-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+    .forum-thread-title { font-size: 0.85rem; font-weight: bold; color: var(--accent-gold-hover); margin: 0 0 4px; }
+    .forum-thread-meta { font-size: 0.68rem; color: var(--text-secondary); display: flex; gap: 10px; margin-bottom: 6px; }
+    .forum-thread-body { font-size: 0.78rem; color: #ddd; margin: 0; line-height: 1.35; }
+    .forum-actions { display: flex; gap: 10px; margin-top: 8px; font-size: 0.7rem; }
+    .btn-forum-action { background: transparent; border: none; color: var(--accent-gold); cursor: pointer; padding: 0; font-weight: 600; }
+    .no-threads { font-size: 0.78rem; color: #888; font-style: italic; margin-bottom: 15px; display: block; }
+    .new-thread-box { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
+    .new-thread-box input, .new-thread-box textarea, .new-thread-box select { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 6px; color: #fff; padding: 8px 12px; font-family: inherit; font-size: 0.8rem; box-sizing: border-box; outline: none; }
+    .btn-create-thread { background: linear-gradient(135deg, #d4af37, #8a6d1c); color: #000; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 0.78rem; cursor: pointer; align-self: flex-end; }
+
+    .trust-section { background: var(--bg-lighter); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; padding: 20px 15px; margin: 30px 0; }
+    .trust-header { font-family: 'Cinzel', serif; color: var(--accent-gold); font-size: 1rem; margin: 0 0 12px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 6px; }
+    .trust-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+    .trust-box h4 { font-size: 0.82rem; color: var(--accent-gold-hover); margin: 0 0 6px 0; }
+    .trust-box p, .trust-box ul { font-size: 0.75rem; color: var(--text-secondary); margin: 0; line-height: 1.45; padding-left: 0; list-style: none; }
+    .trust-box ul li { margin-bottom: 4px; position: relative; padding-left: 14px; }
+    .trust-box ul li::before { content: '•'; color: var(--accent-gold); position: absolute; left: 0; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+    .card-profile {
+      position: relative; background: var(--card-bg);
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .card-profile.card-placeholder {
+      border: 1px dashed rgba(212, 175, 55, 0.5);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 25px 12px;
+      background: rgba(212, 175, 55, 0.03);
+      min-height: 200px; box-sizing: border-box; transition: all 0.2s ease;
+    }
+
+    .card-profile.card-placeholder:hover { background: rgba(212, 175, 55, 0.08); border-color: var(--accent-gold); }
+    .card-placeholder h4 { font-family: 'Cinzel', serif; color: var(--accent-gold); margin: 0 0 6px; font-size: 0.95rem; }
+    .card-placeholder p { font-size: 0.72rem; color: var(--text-secondary); margin: 0 0 12px; line-height: 1.3; }
+
+    .card-profile img.profile-thumb {
+      width: 100%; height: 230px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .watermark-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      pointer-events: none; z-index: 2;
+    }
+    .watermark-logo-img { width: 55% !important; height: auto !important; opacity: 0.60; filter: drop-shadow(0 0 4px rgba(0,0,0,0.9)); }
+
+    .card-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 25px 8px 8px;
+      background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+      z-index: 3;
+    }
+
+    .card-name {
+      font-family: 'Cinzel', serif; color: var(--accent-gold-hover);
+      font-size: 0.95rem; margin: 0; font-weight: bold;
+      display: flex; align-items: center; gap: 4px;
+    }
+
+    .verified-check {
+      color: var(--accent-gold);
+      font-weight: 900;
+      font-size: 0.95rem;
+      margin-left: 4px;
+      text-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+    }
+
+    .card-location { font-size: 0.7rem; color: var(--text-secondary); margin: 2px 0 0; text-transform: uppercase; }
+    .tag-modalidad { display: inline-block; background: rgba(212, 175, 55, 0.2); color: var(--accent-gold-hover); font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; margin-top: 3px; }
+    .btn-gold-sm { background: linear-gradient(135deg, #d4af37, #8a6d1c); color: #000; padding: 8px 18px; border-radius: 20px; font-weight: bold; text-decoration: none; font-size: 0.78rem; display: inline-block; }
+
+    .banner-unificado {
+      background: linear-gradient(135deg, #1f1911, #0d0a08);
+      border: 1px solid var(--accent-gold); border-radius: 12px;
+      padding: 20px 15px; margin: 30px 0; text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    .banner-unificado h3 { font-family: 'Cinzel', serif; color: var(--accent-gold); margin: 0 0 8px; font-size: 1.2rem; }
+    .banner-unificado p { font-size: 0.82rem; color: #ddd; margin: 0 0 14px; }
+
+    .modal {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.88); z-index: 9000;
+      display: flex; justify-content: center; align-items: flex-end;
+    }
+
+    .modal-content {
+      background: var(--bg-lighter); border: 1px solid var(--accent-gold);
+      border-radius: 20px 20px 0 0; padding: 25px 18px 20px; width: 100%; max-width: 500px;
+      max-height: 85vh; overflow-y: auto; position: relative;
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.9); box-sizing: border-box;
+      animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-content::before {
+      content: ''; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      width: 40px; height: 4px; background: rgba(212, 175, 55, 0.4); border-radius: 4px;
+    }
+
+    .modal-close {
+      position: absolute; top: 15px; right: 15px;
+      background: rgba(255,255,255,0.1); border: none; color: #fff;
+      font-size: 1.5rem; width: 32px; height: 32px; border-radius: 50%;
+      cursor: pointer; z-index: 10;
+    }
+
+    .modal-header { text-align: center; margin-bottom: 10px; }
+    .modal-header h2 { font-family: 'Cinzel', serif; color: var(--accent-gold); margin: 5px 0 2px; font-size: 1.6rem; }
+    
+    .badge-verified {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(138, 109, 28, 0.2));
+      border: 1px solid var(--accent-gold); color: var(--accent-gold-hover);
+      font-size: 0.72rem; padding: 3px 12px; border-radius: 15px;
+      font-family: 'Cinzel', serif; letter-spacing: 0.5px; font-weight: 600;
+    }
+
+    .modal-gallery-slider {
+      display: flex; gap: 10px; overflow-x: scroll;
+      scroll-snap-type: x mandatory; padding-bottom: 8px; margin-bottom: 10px;
+      -webkit-overflow-scrolling: touch; width: 100%; box-sizing: border-box;
+    }
+    .modal-gallery-slider::-webkit-scrollbar { height: 4px; }
+    .modal-gallery-slider::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 4px; }
+
+    .modal-gallery-slider .img-wrapper {
+      position: relative; flex: 0 0 85%; width: 85%; height: 280px;
+      background: #000; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.4);
+      scroll-snap-align: center; display: flex; align-items: center; justify-content: center;
+      overflow: hidden; cursor: pointer;
+    }
+    .modal-gallery-slider img.main-photo { width: 100%; height: 100%; object-fit: contain; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 8px; margin: 15px 0; }
+    .info-box { background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--accent-gold); padding: 8px 12px; border-radius: 4px; }
+    .info-label { font-size: 0.65rem; color: var(--text-secondary); letter-spacing: 1px; text-transform: uppercase; }
+    .info-value { font-size: 0.85rem; color: #fff; margin-top: 2px; display: block; }
+
+    .lightbox { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10005; display: flex; justify-content: center; align-items: center; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2rem; background: none; border: none; cursor: pointer; z-index: 10; }
+    .lightbox-slider { display: flex; width: 100%; height: 100%; overflow-x: scroll; scroll-snap-type: x mandatory; }
+    .lightbox-slide { flex: 0 0 100vw; width: 100vw; height: 100vh; scroll-snap-align: center; display: flex; justify-content: center; align-items: center; position: relative; }
+    .lightbox-slide img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    .experiences-section { margin-top: 25px; border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 15px; }
+    .experiences-title { font-family: 'Cinzel', serif; color: var(--accent-gold); font-size: 1.05rem; margin: 0 0 6px; }
+    .experiences-rules { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.4; }
+    .comment-card { background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 10px 12px; border-left: 2px solid var(--accent-gold); margin-bottom: 10px; }
+    .comment-header { display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 4px; }
+    .comment-author { font-weight: bold; color: var(--accent-gold); }
+    .comment-date { color: var(--text-secondary); font-size: 0.7rem; }
+    .comment-text { font-size: 0.82rem; color: #ddd; margin: 0; }
+    .no-comments { font-size: 0.78rem; color: #888; font-style: italic; margin-bottom: 10px; display: block; }
+
+    .add-experience-box { margin-top: 15px; display: flex; flex-direction: column; gap: 8px; }
+    .add-experience-box input[type="text"], .add-experience-box textarea {
+      width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 6px; color: #fff; padding: 8px 12px; font-family: inherit; font-size: 0.8rem;
+      box-sizing: border-box; outline: none;
+    }
+    .btn-submit-exp { background: var(--accent-gold); color: #000; border: none; padding: 8px 14px; border-radius: 4px; font-weight: bold; font-size: 0.78rem; cursor: pointer; align-self: flex-end; }
+
+    .cta-container { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+    .btn-call { background: linear-gradient(135deg, #d4af37, #8a6d1c); color: #000; text-align: center; padding: 12px 0; border-radius: 25px; font-weight: bold; text-decoration: none; font-size: 0.95rem; }
+    .btn-whatsapp { background: #25d366; color: #fff; text-align: center; padding: 12px 0; border-radius: 25px; font-weight: bold; text-decoration: none; font-size: 0.95rem; }
+
+    .floating-cta {
+      position: fixed; bottom: 20px; right: 15px; background: #25d366;
+      color: #fff; padding: 10px 18px; border-radius: 30px;
+      font-weight: bold; font-size: 0.85rem; text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6); z-index: 1000;
+    }
+
+    @media (min-width: 768px) {
+      .container { max-width: 1000px; }
+      .grid-2 { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .grid-3 { grid-template-columns: repeat(4, 1fr); gap: 15px; }
+      .modal { align-items: center; }
+      .modal-content { border-radius: 16px; animation: none; max-width: 600px; padding: 30px; }
+      .modal-content::before { display: none; }
+      .modal-gallery-slider .img-wrapper { flex: 0 0 60%; height: 350px; }
+      .forum-section { padding: 25px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    }
+
+    @media (min-width: 1200px) {
+      .container { max-width: 1140px; }
+      .grid-2 { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    footer {
+      margin-top: 40px; padding: 20px 15px; border-top: 1px solid rgba(212, 175, 55, 0.2);
+      text-align: center; font-size: 0.7rem; color: #777; line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-sticky-bar">
+    <div class="top-brand-logos">
+      <img src="./monograma.png" alt="Monograma" class="logo-monograma">
+      <img src="./tipografia.png" alt="Masajistas Privé" class="logo-tipografia">
+    </div>
+
+    <div class="top-bar-actions">
+      <button class="btn-quick-exit" onclick="activarModoCamuflaje()" title="Salida Rápida">🛡️ <span id="txt-exit">Salir</span></button>
+      <button class="btn-lang" onclick="toggleLanguage()" id="lang-btn">EN</button>
+      <button class="btn-top-search" onclick="toggleFilterDrawer()">🔍 <span id="txt-search-btn">Buscar</span></button>
+    </div>
+  </div>
+
+  <div id="filter-drawer" class="filter-drawer hidden">
+    <div class="filter-drawer-content">
+      <div class="filter-drawer-header">
+        <h3 id="txt-drawer-title">Buscador & Filtros</h3>
+        <button class="modal-close" style="position:static;" onclick="toggleFilterDrawer()">&times;</button>
+      </div>
+
+      <div class="filter-group">
+        <label id="txt-lbl-name">Buscar por Nombre o Servicio</label>
+        <input type="text" id="drawer-search-name" class="search-input" placeholder="Escribí un nombre o técnica..." onkeyup="applyDrawerFilters()">
+      </div>
+
+      <div class="filter-group">
+        <label id="txt-lbl-zone">Filtrar por Zona / Barrio</label>
+        <select id="drawer-search-neighborhood" class="search-select" onchange="applyDrawerFilters()">
+          <option value="" id="opt-all-zones">Todos los Barrios</option>
+          <option value="tribunales">Tribunales</option>
+          <option value="caballito">Caballito</option>
+          <option value="microcentro">Microcentro</option>
+          <option value="recoleta">Recoleta</option>
+          <option value="congreso">Congreso / Balvanera</option>
+          <option value="palermo">Palermo</option>
+          <option value="belgrano">Belgrano</option>
+          <option value="puerto madero">Puerto Madero</option>
+          <option value="san telmo">San Telmo</option>
+          <option value="devoto">Devoto</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label id="txt-lbl-cat">Seleccionar Categoría</label>
+        <select id="drawer-search-category" class="search-select" onchange="applyDrawerFilters()">
+          <option value="all" id="opt-all-cats">Todas las Categorías</option>
+          <option value="sec-prive">⭐ Privé</option>
+          <option value="sec-sensuales" id="opt-cat-sens">Sensuales</option>
+          <option value="sec-terapeuticas" id="opt-cat-terap">Terapéuticas</option>
+          <option value="sec-masculinos" id="opt-cat-masc">Masculinos</option>
+          <option value="sec-fantasias" id="opt-cat-fant">Fantasías</option>
+        </select>
+      </div>
+
+      <button class="btn-age-enter" style="width:100%; margin-top:10px;" onclick="toggleFilterDrawer()" id="txt-btn-results">Ver Resultados</button>
+    </div>
+  </div>
+
+  <div id="age-gate" class="age-gate">
+    <div class="age-gate-box">
+      <h1 id="txt-age-title">Este es un sitio para adultos</h1>
+      <p id="txt-age-desc">Este sitio contiene material para adultos. Al ingresar declarás que tenés al menos 18 años y aceptás nuestros términos y condiciones.<br><br><strong>Aviso:</strong> Las masajistas anunciantes no tienen ningún vínculo laboral con este portal; somos únicamente un soporte publicitario.</p>
+      <div class="age-gate-buttons">
+        <button class="btn-age-enter" onclick="acceptAge()" id="txt-age-enter">ENTRAR (+18)</button>
+        <a href="https://www.google.com" class="btn-age-exit" id="txt-age-exit">SALIR</a>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo-container">
+      <img src="./logo.png" alt="Masajistas Privé">
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div style="font-size:0.7rem; color:var(--accent-gold); margin-bottom:5px; text-transform:uppercase; letter-spacing:1px; font-weight:bold;" id="txt-featured">Profesionales Destacadas:</div>
+    <div class="stories-container" id="stories-list">
+      <div class="story-item" onclick="openProfileById('jennyfer')">
+        <img src="./jennyfer1.jpg" class="story-avatar" alt="Jennyfer">
+        <span class="story-name">Jennyfer ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('deby')">
+        <img src="./deby1.jpg" class="story-avatar" alt="Deby">
+        <span class="story-name">Deby ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('prada')">
+        <img src="./prada1.jpg" class="story-avatar" alt="Prada">
+        <span class="story-name">Prada ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('lupita')">
+        <img src="./lupita1.jpg" class="story-avatar" alt="Lupita">
+        <span class="story-name">Lupita ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('sol')">
+        <img src="./sol1.jpg" class="story-avatar" alt="Sol">
+        <span class="story-name">Sol ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('matias')">
+        <img src="./matias1.jpg" class="story-avatar" alt="Matias">
+        <span class="story-name">Matias ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('daniela')">
+        <img src="./daniela1.jpg" class="story-avatar" alt="Daniela">
+        <span class="story-name">Daniela ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('zaira')">
+        <img src="./zaira1.jpg" class="story-avatar" alt="Zaira">
+        <span class="story-name">Zaira ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('donatella')">
+        <img src="./donatella1.jpg" class="story-avatar" alt="Donatella">
+        <span class="story-name">Donatella ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('mariela')">
+        <img src="./mariela1.jpg" class="story-avatar" alt="Mariela">
+        <span class="story-name">Mariela ✓</span>
+      </div>
+      <div class="story-item" onclick="openProfileById('mia')">
+        <img src="./mia1.jpg" class="story-avatar" alt="Mia">
+        <span class="story-name">Mia ✓</span>
+      </div>
+    </div>
+
+    <div class="category-tabs">
+      <button class="tab-btn active" onclick="showAllCategories(this)" id="tab-all">Todas</button>
+      <button class="tab-btn" onclick="showCategory('sec-prive', this)">⭐ Privé</button>
+      <button class="tab-btn" onclick="showCategory('sec-sensuales', this)" id="tab-sens">Sensuales</button>
+      <button class="tab-btn" onclick="showCategory('sec-terapeuticas', this)" id="tab-terap">Terapéuticas</button>
+      <button class="tab-btn" onclick="showCategory('sec-masculinos', this)" id="tab-masc">Masculinos</button>
+      <button class="tab-btn" onclick="showCategory('sec-fantasias', this)" id="tab-fant">Fantasías</button>
+      <button class="tab-btn" onclick="scrollToForum(this)" id="tab-forum">💬 Foro</button>
+    </div>
+
+    <div id="cat-prive" class="category-block">
+      <h2 class="section-title-toggle prive-header" onclick="toggleCategory('sec-prive')">
+        <span>⭐ Masajistas Privé ⭐</span>
+        <span class="toggle-icon" id="icon-sec-prive">▼</span>
+      </h2>
+      <div id="sec-prive" class="category-content grid-2">
+        
+        <div class="card-profile" onclick="openProfileById('jennyfer')" data-name="jennyfer" data-zone="tribunales">
+          <img src="./jennyfer1.jpg" alt="Jennyfer" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Jennyfer</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Consultorio propio" data-en="Own office">Consultorio propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('deby')" data-name="deby" data-zone="caballito">
+          <img src="./deby1.jpg" alt="Deby" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Deby</p>
+            <p class="card-location">Caballito</p>
+            <span class="tag-modalidad" data-es="Gabinete propio" data-en="Private studio">Gabinete propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('prada')" data-name="prada" data-zone="tribunales">
+          <img src="./prada1.jpg" alt="Prada" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Prada</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Depto reservado" data-en="Reserved apartment">Depto reservado</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('lupita')" data-name="lupita" data-zone="tribunales">
+          <img src="./lupita1.jpg" alt="Lupita" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Lupita</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Dpto propio / Hoteles" data-en="Own apt / Hotels">Dpto propio / Hoteles</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('sol')" data-name="sol" data-zone="tribunales">
+          <img src="./sol1.jpg" alt="Sol" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Sol</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Departamento propio" data-en="Own apartment">Departamento propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('matias')" data-name="matias" data-zone="recoleta">
+          <img src="./matias1.jpg" alt="Matias" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Matias</p>
+            <p class="card-location">Recoleta</p>
+            <span class="tag-modalidad" data-es="Gabinete / Camilla" data-en="Studio / Table">Gabinete / Camilla</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('daniela')" data-name="daniela" data-zone="microcentro">
+          <img src="./daniela1.jpg" alt="Daniela" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Daniela</p>
+            <p class="card-location">Microcentro</p>
+            <span class="tag-modalidad" data-es="Gabinete propio" data-en="Private studio">Gabinete propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('zaira')" data-name="zaira" data-zone="caballito">
+          <img src="./zaira1.jpg" alt="Zaira" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Zaira</p>
+            <p class="card-location">Caballito</p>
+            <span class="tag-modalidad" data-es="Gabinete propio" data-en="Private studio">Gabinete propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('donatella')" data-name="donatella" data-zone="caba">
+          <img src="./donatella1.jpg" alt="Donatella" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Donatella</p>
+            <p class="card-location">CABA</p>
+            <span class="tag-modalidad" data-es="Dpto propio" data-en="Own apartment">Dpto propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('mariela')" data-name="mariela" data-zone="congreso">
+          <img src="./mariela1.jpg" alt="Mariela" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Mariela</p>
+            <p class="card-location">Congreso</p>
+            <span class="tag-modalidad" data-es="Departamento propio" data-en="Own apartment">Departamento propio</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="banner-unificado">
+      <h3 id="txt-banner-title">Publicitá tu espacio aquí</h3>
+      <p id="txt-banner-desc">Alquiler de gabinetes equipados o incorporación a la nómina de profesionales. ¡Publicación 100% gratuita hasta el 30/09!</p>
+      <a href="https://api.whatsapp.com/send?phone=5491131774848&text=Consulta%20Publicit%C3%A1%20tu%20Espacio" target="_blank" class="btn-gold-sm" id="txt-banner-btn">Consultar Ahora</a>
+    </div>
+
+    <div id="cat-sensuales" class="category-block">
+      <h2 class="section-title-toggle" onclick="toggleCategory('sec-sensuales')">
+        <span id="txt-cat-sens-title">Masajistas Sensuales</span>
+        <span class="toggle-icon" id="icon-sec-sensuales">▼</span>
+      </h2>
+      <div id="sec-sensuales" class="category-content grid-2">
+        
+        <div class="card-profile" onclick="openProfileById('deby')" data-name="deby" data-zone="caballito">
+          <img src="./deby1.jpg" alt="Deby" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Deby</p>
+            <p class="card-location">Caballito</p>
+            <span class="tag-modalidad" data-es="Gabinete propio" data-en="Private studio">Gabinete propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('lupita')" data-name="lupita" data-zone="tribunales">
+          <img src="./lupita1.jpg" alt="Lupita" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Lupita</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Dpto propio / Hoteles" data-en="Own apt / Hotels">Dpto propio / Hoteles</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('sol')" data-name="sol" data-zone="tribunales">
+          <img src="./sol1.jpg" alt="Sol" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Sol</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Departamento propio" data-en="Own apartment">Departamento propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('donatella')" data-name="donatella" data-zone="caba">
+          <img src="./donatella1.jpg" alt="Donatella" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Donatella</p>
+            <p class="card-location">CABA</p>
+            <span class="tag-modalidad" data-es="Dpto propio" data-en="Own apartment">Dpto propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('mia')" data-name="mia" data-zone="congreso">
+          <img src="./mia1.jpg" alt="Mia" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Mia</p>
+            <p class="card-location">Congreso</p>
+            <span class="tag-modalidad" data-es="Atención privada" data-en="Private attention">Atención privada</span>
+          </div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send?phone=5491131774848&text=Hola,%20quiero%20publicar%20en%20Sensuales" target="_blank" style="text-decoration:none;">
+          <div class="card-profile card-placeholder">
+            <h4 id="txt-card-sp-1" data-es="Espacio Disponible" data-en="Available Space">Espacio Disponible</h4>
+            <p id="txt-card-sp-2" data-es="Publicación gratis hasta el 30/09" data-en="Free publication until 09/30">Publicación gratis hasta el 30/09</p>
+            <span class="btn-gold-sm" id="txt-card-sp-3" data-es="Anunciarme" data-en="Advertise">Anunciarme</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div id="cat-terapeuticas" class="category-block">
+      <h2 class="section-title-toggle" onclick="toggleCategory('sec-terapeuticas')">
+        <span id="txt-cat-terap-title">Masajistas Terapéuticas</span>
+        <span class="toggle-icon" id="icon-sec-terapeuticas">▼</span>
+      </h2>
+      <div id="sec-terapeuticas" class="category-content grid-3">
+        
+        <div class="card-profile" onclick="openProfileById('jennyfer')" data-name="jennyfer" data-zone="tribunales">
+          <img src="./jennyfer1.jpg" alt="Jennyfer" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Jennyfer</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Consultorio propio" data-en="Own office">Consultorio propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('prada')" data-name="prada" data-zone="tribunales">
+          <img src="./prada1.jpg" alt="Prada" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Prada</p>
+            <p class="card-location">Tribunales</p>
+            <span class="tag-modalidad" data-es="Depto reservado" data-en="Reserved apartment">Depto reservado</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('daniela')" data-name="daniela" data-zone="microcentro">
+          <img src="./daniela1.jpg" alt="Daniela" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Daniela</p>
+            <p class="card-location">Microcentro</p>
+            <span class="tag-modalidad" data-es="Gabinete propio" data-en="Private studio">Gabinete propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('zaira')" data-name="zaira" data-zone="caballito">
+          <img src="./zaira1.jpg" alt="Zaira" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Zaira</p>
+            <p class="card-location">Caballito</p>
+            <span class="tag-modalidad" data-es="Gabinete propio" data-en="Private studio">Gabinete propio</span>
+          </div>
+        </div>
+
+        <div class="card-profile" onclick="openProfileById('mariela')" data-name="mariela" data-zone="congreso">
+          <img src="./mariela1.jpg" alt="Mariela" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Mariela</p>
+            <p class="card-location">Congreso</p>
+            <span class="tag-modalidad" data-es="Departamento propio" data-en="Own apartment">Departamento propio</span>
+          </div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send?phone=5491131774848&text=Hola,%20quiero%20publicar%20en%20Terapeuticas" target="_blank" style="text-decoration:none;">
+          <div class="card-profile card-placeholder" style="min-height:145px;">
+            <h4 style="font-size:0.85rem;" id="txt-card-free-1" data-es="Espacio Libre" data-en="Free Space">Espacio Libre</h4>
+            <span class="btn-gold-sm" style="font-size:0.65rem; padding:4px 10px;" id="txt-card-free-2" data-es="Anunciarme" data-en="Advertise">Anunciarme</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div id="cat-masculinos" class="category-block">
+      <h2 class="section-title-toggle" onclick="toggleCategory('sec-masculinos')">
+        <span id="txt-cat-masc-title">Masajistas Masculinos</span>
+        <span class="toggle-icon" id="icon-sec-masculinos">▼</span>
+      </h2>
+      <div id="sec-masculinos" class="category-content grid-2">
+        
+        <div class="card-profile" onclick="openProfileById('matias')" data-name="matias" data-zone="recoleta">
+          <img src="./matias1.jpg" alt="Matias" class="profile-thumb">
+          <div class="watermark-overlay"><img src="./logo.png" alt="Marca de Agua" class="watermark-logo-img"></div>
+          <div class="card-overlay">
+            <p class="card-name">Matias</p>
+            <p class="card-location">Recoleta</p>
+            <span class="tag-modalidad" data-es="Gabinete / Camilla" data-en="Studio / Table">Gabinete / Camilla</span>
+          </div>
+        </div>
+
+        <a href="https://api.whatsapp.com/send?phone=5491131774848&text=Hola,%20quiero%20publicar%20en%20Masajistas%20Masculinos" target="_blank" style="text-decoration:none;">
+          <div class="card-profile card-placeholder">
+            <h4 id="txt-card-pub-1" data-es="Publicá Tu Anuncio" data-en="Publish Your Ad">Publicá Tu Anuncio</h4>
+            <p id="txt-card-pub-2" data-es="100% sin cargo hasta el 30/09" data-en="100% free until 09/30">100% sin cargo hasta el 30/09</p>
+            <span class="btn-gold-sm" id="txt-card-pub-3" data-es="Anunciarme" data-en="Advertise">Anunciarme</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div id="cat-fantasias" class="category-block">
+      <h2 class="section-title-toggle" onclick="toggleCategory('sec-fantasias')">
+        <span id="txt-cat-fant-title">Fantasías</span>
+        <span class="toggle-icon" id="icon-sec-fantasias">▼</span>
+      </h2>
+      <div id="sec-fantasias" class="category-content grid-2">
+        <a href="https://api.whatsapp.com/send?phone=5491131774848&text=Hola,%20quiero%20publicar%20en%20Fantasias" target="_blank" style="text-decoration:none;">
+          <div class="card-profile card-placeholder">
+            <h4 id="txt-card-fan-1" data-es="Espacio Disponible" data-en="Available Space">Espacio Disponible</h4>
+            <p id="txt-card-fan-2" data-es="Publicá tus sesiones especiales" data-en="Publish your special sessions">Publicá tus sesiones especiales</p>
+            <span class="btn-gold-sm" id="txt-card-fan-3" data-es="Anunciarme" data-en="Advertise">Anunciarme</span>
+          </div>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=5491131774848&text=Hola,%20quiero%20publicar%20en%20Fantasias" target="_blank" style="text-decoration:none;">
+          <div class="card-profile card-placeholder">
+            <h4 id="txt-card-fan-4" data-es="Publicá Tu Anuncio" data-en="Publish Your Ad">Publicá Tu Anuncio</h4>
+            <p id="txt-card-fan-5" data-es="Perfil con verificación transparente" data-en="Profile with transparent verification">Perfil con verificación transparente</p>
+            <span class="btn-gold-sm" id="txt-card-fan-6" data-es="Anunciarme" data-en="Advertise">Anunciarme</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div id="forum-container" class="forum-section">
+      <div class="forum-header">
+        <h3 id="txt-forum-title">💬 Foro & Comunidad Privé</h3>
+        <span style="font-size: 0.72rem; color: var(--accent-gold);" id="txt-forum-sub">Espacio de Debate</span>
+      </div>
+
+      <div class="forum-rules-notice" id="txt-forum-rules">
+        <strong>Normas del Foro:</strong> Mantené el respeto y la cordialidad. Se prohíbe divulgar datos personales privados, spam directo o contenido ofensivo. Las opiniones pertenecen exclusivamente a los usuarios.
+      </div>
+
+      <div id="forum-threads-list">
+        <span class="no-threads" id="txt-no-threads">Aún no hay temas creados en la comunidad. ¡Sé el primero en iniciar un debate!</span>
+      </div>
+
+      <div class="new-thread-box">
+        <h4 style="font-family: 'Cinzel', serif; color: var(--accent-gold); margin: 10px 0 2px; font-size: 0.9rem;" id="txt-new-thread-title">Crear un nuevo tema de debate</h4>
+        <input type="text" id="forum-title-input" placeholder="Título del tema o pregunta...">
+        <select id="forum-category-select">
+          <option value="Recomendaciones" id="opt-f-rec">Recomendaciones de Zonas / Gabinetes</option>
+          <option value="Técnicas" id="opt-f-tec">Consultas sobre Técnicas de Masajes</option>
+          <option value="General" id="opt-f-gen">Debate General & Experiencias</option>
+        </select>
+        <textarea id="forum-body-input" rows="3" placeholder="Escribí tu consulta o aporte a la comunidad..."></textarea>
+        <button class="btn-create-thread" onclick="createForumThread()" id="txt-btn-create-thread">Publicar Tema</button>
+      </div>
+    </div>
+
+    <div class="trust-section">
+      <h3 class="trust-header" id="txt-trust-title">🛡️ Compromiso de Calidad & Seguridad</h3>
+      <div class="trust-grid">
+        <div class="trust-box">
+          <h4 id="txt-trust-user-h">Guía para Usuarios</h4>
+          <ul id="txt-trust-user-list">
+            <li>Coordinación transparente y directa vía WhatsApp sin intermediarios.</li>
+            <li>Respeto mutuo y trato cordial durante la atención en gabinete.</li>
+            <li>Cancelaciones con aviso previo para optimizar la agenda de las profesionales.</li>
+          </ul>
+        </div>
+        <div class="trust-box">
+          <h4 id="txt-trust-proto-h">Protocolo de Verificación</h4>
+          <p id="txt-trust-proto-p">El sello <strong>✓ Privé Verificado</strong> garantiza la autenticidad del material fotográfico mediante validación previa de identidad, protegiendo a los usuarios contra perfiles falsos.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="profile-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeProfile()">&times;</button>
+      
+      <div class="modal-header">
+        <h2 id="modal-name">Nombre</h2>
+        <span id="modal-verified-tag" class="badge-verified">✓ Sello Oficial Privé Verificado</span>
+      </div>
+
+      <div class="modal-gallery-slider" id="modal-gallery-container"></div>
+
+      <div class="info-grid">
+        <div class="info-box">
+          <span class="info-label" id="lbl-mod">Modalidad / Zona</span>
+          <strong id="modal-modality" class="info-value"></strong>
+        </div>
+        <div class="info-box">
+          <span class="info-label" id="lbl-bio">Descripción</span>
+          <strong id="modal-bio" class="info-value"></strong>
+        </div>
+        <div class="info-box">
+          <span class="info-label" id="lbl-sch">Días y Horarios</span>
+          <strong id="modal-schedule" class="info-value"></strong>
+        </div>
+        <div class="info-box">
+          <span class="info-label" id="lbl-eq">Equipamiento y Servicios</span>
+          <strong id="modal-equipment" class="info-value"></strong>
+        </div>
+        <div class="info-box">
+          <span class="info-label" id="lbl-serv">Técnicas de Masaje</span>
+          <strong id="modal-services" class="info-value"></strong>
+        </div>
+        <div class="info-box">
+          <span class="info-label" id="lbl-pay">Medios de Pago</span>
+          <strong id="modal-payments" class="info-value"></strong>
+        </div>
+        <div class="info-box">
+          <span class="info-label" id="lbl-book">Modalidad de Turnos</span>
+          <strong id="modal-booking" class="info-value"></strong>
+        </div>
+      </div>
+
+      <div class="cta-container">
+        <a id="modal-call-btn" href="#" class="btn-call">📞 Contactar Telefónicamente</a>
+        <a id="modal-wa-btn" href="#" target="_blank" class="btn-whatsapp">💬 Contactar por WhatsApp</a>
+      </div>
+
+      <div class="experiences-section">
+        <h3 class="experiences-title" id="txt-exp-title">Casilla de Experiencias</h3>
+        <p class="experiences-rules" id="txt-exp-rules">Publicá tu experiencia con respeto y cordialidad hacia las profesionales y la comunidad. Comentarios ofensivos serán eliminados.</p>
+        
+        <div id="comments-list"></div>
+
+        <div class="add-experience-box">
+          <input type="text" id="new-exp-author" placeholder="Tu nombre o apodo...">
+          <textarea id="new-exp-text" rows="2" placeholder="Escribí tu reseña o experiencia aquí..."></textarea>
+          <button class="btn-submit-exp" onclick="addExperience()" id="txt-btn-submit-exp">Publicar Experiencia</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox hidden">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <div class="lightbox-slider" id="lightbox-slider"></div>
+  </div>
+
+  <a href="https://api.whatsapp.com/send?phone=5491131774848&text=Hola,%20quiero%20publicar" target="_blank" class="floating-cta" id="txt-floating-cta">
+    ¿Querés Publicar?
+  </a>
+
+  <footer>
+    <p id="txt-footer"><strong>DESCARGO DE RESPONSABILIDAD LEGAL:</strong> MasajistasPrivé.com funciona únicamente como un soporte publicitario digital independiente. El sitio no emplea, representa ni intermedia en la contratación de los anunciantes listados. Toda la información suministrada en los avisos es de exclusiva responsabilidad de cada anunciante. MasajistasPrivé.com se deslinda de cualquier responsabilidad legal respecto a la veracidad de los anuncios o el desarrollo de los servicios prestados por terceros.</p>
+    <p>© 2026 MasajistasPrivé.com — Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    let currentLang = 'es';
+    let currentActiveProfileId = null;
+
+    const translations = {
+      es: {
+        metaTitle: "Masajistas Privé | Portal Exclusivo de Masajes en Buenos Aires",
+        exit: "Salir",
+        searchBtn: "Buscar",
+        drawerTitle: "Buscador & Filtros",
+        lblName: "Buscar por Nombre o Servicio",
+        lblNamePh: "Escribí un nombre o técnica...",
+        lblZone: "Filtrar por Zona / Barrio",
+        optAllZones: "Todos los Barrios",
+        lblCat: "Seleccionar Categoría",
+        optAllCats: "Todas las Categorías",
+        optCatSens: "Sensuales",
+        optCatTerap: "Terapéuticas",
+        optCatMasc: "Masculinos",
+        optCatFant: "Fantasías",
+        btnResults: "Ver Resultados",
+        ageTitle: "Este es un sitio para adultos",
+        ageDesc: "Este sitio contiene material para adultos. Al ingresar declarás que tenés al menos 18 años y aceptás nuestros términos y condiciones.<br><br><strong>Aviso:</strong> Las masajistas anunciantes no tienen ningún vínculo laboral con este portal; somos únicamente un soporte publicitario.",
+        ageEnter: "ENTRAR (+18)",
+        ageExit: "SALIR",
+        featured: "Profesionales Destacadas:",
+        tabAll: "Todas",
+        tabSens: "Sensuales",
+        tabTerap: "Terapéuticas",
+        tabMasc: "Masculinos",
+        tabFant: "Fantasías",
+        tabForum: "💬 Foro",
+        catSensTitle: "Masajistas Sensuales",
+        catTerapTitle: "Masajistas Terapéuticas",
+        catMascTitle: "Masajistas Masculinos",
+        catFantTitle: "Fantasías",
+        bannerTitle: "Publicitá tu espacio aquí",
+        bannerDesc: "Alquiler de gabinetes equipados o incorporación a la nómina de profesionales. ¡Publicación 100% gratuita hasta el 30/09!",
+        bannerBtn: "Consultar Ahora",
+        cardSp1: "Espacio Disponible",
+        cardSp2: "Publicación gratis hasta el 30/09",
+        cardSp3: "Anunciarme",
+        cardFree1: "Espacio Libre",
+        cardFree2: "Anunciarme",
+        cardPub1: "Publicá Tu Anuncio",
+        cardPub2: "100% sin cargo hasta el 30/09",
+        cardPub3: "Anunciarme",
+        cardFan1: "Espacio Disponible",
+        cardFan2: "Publicá tus sesiones especiales",
+        cardFan3: "Anunciarme",
+        cardFan4: "Publicá Tu Anuncio",
+        cardFan5: "Perfil con verificación transparente",
+        cardFan6: "Anunciarme",
+        forumTitle: "💬 Foro & Comunidad Privé",
+        forumSub: "Espacio de Debate",
+        forumRules: "<strong>Normas del Foro:</strong> Mantené el respeto y la cordialidad. Se prohíbe divulgar datos personales privados, spam directo o contenido ofensivo. Las opiniones pertenecen exclusivamente a los usuarios.",
+        noThreads: "Aún no hay temas creados en la comunidad. ¡Sé el primero en iniciar un debate!",
+        newThreadTitle: "Crear un nuevo tema de debate",
+        newThreadPh: "Título del tema o pregunta...",
+        optFRec: "Recomendaciones de Zonas / Gabinetes",
+        optFTec: "Consultas sobre Técnicas de Masajes",
+        optFGen: "Debate General & Experiencias",
+        newThreadBodyPh: "Escribí tu consulta o aporte a la comunidad...",
+        btnCreateThread: "Publicar Tema",
+        trustTitle: "🛡️ Compromiso de Calidad & Seguridad",
+        trustUserH: "Guía para Usuarios",
+        trustUserList: "<li>Coordinación transparente y directa vía WhatsApp sin intermediarios.</li><li>Respeto mutuo y trato cordial durante la atención en gabinete.</li><li>Cancelaciones con aviso previo para optimizar la agenda de las profesionales.</li>",
+        trustProtoH: "Protocolo de Verificación",
+        trustProtoP: "El sello <strong>✓ Privé Verificado</strong> garantiza la autenticidad del material fotográfico mediante validación previa de identidad, protegiendo a los usuarios contra perfiles falsos.",
+        verifiedTag: "✓ Sello Oficial Privé Verificado",
+        lblMod: "Modalidad / Zona",
+        lblBio: "Descripción",
+        lblSch: "Días y Horarios",
+        lblEq: "Equipamiento y Servicios",
+        lblServ: "Técnicas de Masaje",
+        lblPay: "Medios de Pago",
+        lblBook: "Modalidad de Turnos",
+        btnCall: "📞 Contactar Telefónicamente",
+        btnWa: "💬 Contactar por WhatsApp",
+        expTitle: "Casilla de Experiencias",
+        expRules: "Publicá tu experiencia con respeto y cordialidad hacia las profesionales y la comunidad. Comentarios ofensivos serán eliminados.",
+        expAuthorPh: "Tu nombre o apodo...",
+        expTextPh: "Escribí tu reseña o experiencia aquí...",
+        btnSubmitExp: "Publicar Experiencia",
+        floatingCta: "¿Querés Publicar?",
+        footer: "<strong>DESCARGO DE RESPONSABILIDAD LEGAL:</strong> MasajistasPrivé.com funciona únicamente como un soporte publicitario digital independiente. El sitio no emplea, representa ni intermedia en la contratación de los anunciantes listados. Toda la información suministrada en los avisos es de exclusiva responsabilidad de cada anunciante. MasajistasPrivé.com se deslinda de cualquier responsabilidad legal respecto a la veracidad de los anuncios o el desarrollo de los servicios prestados por terceros."
+      },
+      en: {
+        metaTitle: "Masajistas Privé | Exclusive Massage Portal in Buenos Aires",
+        exit: "Exit",
+        searchBtn: "Search",
+        drawerTitle: "Search & Filters",
+        lblName: "Search by Name or Service",
+        lblNamePh: "Type a name or technique...",
+        lblZone: "Filter by Zone / Neighborhood",
+        optAllZones: "All Neighborhoods",
+        lblCat: "Select Category",
+        optAllCats: "All Categories",
+        optCatSens: "Sensual",
+        optCatTerap: "Therapeutic",
+        optCatMasc: "Male",
+        optCatFant: "Fantasies",
+        btnResults: "View Results",
+        ageTitle: "This is an adult site",
+        ageDesc: "This portal contains adult material. By entering, you confirm you are at least 18 years old and accept our terms of service.<br><br><strong>Notice:</strong> Advertising masseuses have no employment relationship with this portal; we are solely an advertising medium.",
+        ageEnter: "ENTER (+18)",
+        ageExit: "EXIT",
+        featured: "Featured Professionals:",
+        tabAll: "All",
+        tabSens: "Sensual",
+        tabTerap: "Therapeutic",
+        tabMasc: "Male",
+        tabFant: "Fantasies",
+        tabForum: "💬 Forum",
+        catSensTitle: "Sensual Masseuses",
+        catTerapTitle: "Therapeutic Masseuses",
+        catMascTitle: "Male Masseurs",
+        catFantTitle: "Fantasies",
+        bannerTitle: "Advertise your space here",
+        bannerDesc: "Rental of equipped studios or joining the exclusive roster of professionals. 100% free publication until 09/30!",
+        bannerBtn: "Inquire Now",
+        cardSp1: "Available Space",
+        cardSp2: "Free publication until 09/30",
+        cardSp3: "Advertise",
+        cardFree1: "Free Space",
+        cardFree2: "Advertise",
+        cardPub1: "Publish Your Ad",
+        cardPub2: "100% free until 09/30",
+        cardPub3: "Advertise",
+        cardFan1: "Available Space",
+        cardFan2: "Publish your special sessions",
+        cardFan3: "Advertise",
+        cardFan4: "Publish Your Ad",
+        cardFan5: "Profile with transparent verification",
+        cardFan6: "Advertise",
+        forumTitle: "💬 Privé Community Forum",
+        forumSub: "Discussion Space",
+        forumRules: "<strong>Forum Rules:</strong> Maintain respect and cordiality. Disseminating private personal data, direct spam, or offensive content is prohibited. Opinions belong exclusively to the users.",
+        noThreads: "No threads created in the community yet. Be the first to start a discussion!",
+        newThreadTitle: "Create a new discussion topic",
+        newThreadPh: "Topic title or question...",
+        optFRec: "Zone / Studio Recommendations",
+        optFTec: "Massage Technique Inquiries",
+        optFGen: "General Debate & Experiences",
+        newThreadBodyPh: "Write your inquiry or contribution to the community...",
+        btnCreateThread: "Publish Topic",
+        trustTitle: "🛡️ Quality & Security Commitment",
+        trustUserH: "User Guide",
+        trustUserList: "<li>Transparent and direct coordination via WhatsApp without intermediaries.</li><li>Mutual respect and cordial treatment during studio appointments.</li><li>Cancellations with prior notice to optimize professionals' schedules.</li>",
+        trustProtoH: "Verification Protocol",
+        trustProtoP: "The <strong>✓ Verified Privé</strong> seal guarantees the authenticity of photographic material through prior identity validation, protecting users against fake profiles.",
+        verifiedTag: "✓ Official Privé Verified Seal",
+        lblMod: "Modality / Zone",
+        lblBio: "Description",
+        lblSch: "Days & Hours",
+        lblEq: "Equipment & Amenities",
+        lblServ: "Massage Techniques",
+        lblPay: "Payment Methods",
+        lblBook: "Booking Modality",
+        btnCall: "📞 Contact via Phone",
+        btnWa: "💬 Contact via WhatsApp",
+        expTitle: "Experiences Box",
+        expRules: "Publish your experience with respect and cordiality towards the professionals and the community. Offensive comments will be removed.",
+        expAuthorPh: "Your name or nickname...",
+        expTextPh: "Write your review or experience here...",
+        btnSubmitExp: "Publish Experience",
+        floatingCta: "Want to Advertise?",
+        footer: "<strong>LEGAL DISCLAIMER:</strong> MasajistasPrivé.com acts solely as an independent digital advertising medium. The site does not employ, represent, or mediate in hiring listed advertisers. All information provided in ads is the exclusive responsibility of each advertiser. MasajistasPrivé.com disclaims any legal responsibility regarding the veracity of ads or services provided by third parties."
+      }
+    };
+
+    const profilesData = {
+      jennyfer: {
+        id: 'jennyfer',
+        name: 'Jennyfer',
+        neighborhood: 'Tribunales',
+        modality: {
+          es: 'Consultorio propio',
+          en: 'Own office'
+        },
+        schedule: {
+          es: 'Lunes a Viernes de 08 a 19hs (Sábados y Domingos previa reserva con seña)',
+          en: 'Monday to Friday from 08 to 19hs (Saturdays and Sundays by prior reservation with deposit)'
+        },
+        bio: {
+          es: 'Atención profesional y personalizada in consultorio privado equipado en la zona de Tribunales.',
+          en: 'Professional and personalized attention in an equipped private office in the Tribunales area.'
+        },
+        equipment: {
+          es: 'Ducha, aire acondicionado, gabinete cosmetológico, gabinete SPA, frigobar.',
+          en: 'Shower, air conditioning, cosmetology room, SPA room, minibar.'
+        },
+        services: {
+          es: 'Masajes profesionales, depilación láser, cosmetología facial y corporal.',
+          en: 'Professional massages, laser hair removal, facial and body cosmetology.'
+        },
+        payments: {
+          es: 'Efectivo, transferencia (Tarjetas de crédito y débito tienen 15% de recargo).',
+          en: 'Cash, transfer (Credit and debit cards have a 15% surcharge).'
+        },
+        booking: {
+          es: 'Reserva previa por WhatsApp',
+          en: 'Prior reservation via WhatsApp'
+        },
+        phone: '5491124078332',
+        isReal: true,
+        images: ['./jennyfer1.jpg', './jennyfer2.jpg', './jennyfer3.jpg', './jennyfer4.jpg']
+      },
+      deby: {
+        id: 'deby',
+        name: 'Deby',
+        neighborhood: 'Caballito',
+        modality: { es: 'Gabinete propio', en: 'Private studio' },
+        schedule: { es: 'Lunes a Domingos de 08 a 00 hs', en: 'Monday to Sundays from 08 to 00 hs' },
+        bio: { es: 'Atención personalizada en gabinete propio en el barrio de Caballito.', en: 'Personalized attention in a private studio in Caballito.' },
+        equipment: { es: 'Camilla, ducha, ambiente climatizado.', en: 'Massage table, shower, air-conditioned environment.' },
+        services: { es: 'Masajes relajante, sensual, sensitivo, prostático, descontracturante.', en: 'Relaxing, sensual, sensitive, prostatic, deep tissue massages.' },
+        payments: { es: 'Efectivo (Mercado Pago con recargo)', en: 'Cash (Mercado Pago with surcharge)' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491176540982',
+        isReal: true,
+        images: ['./deby1.jpg', './deby2.jpg', './deby3.jpg', './deby4.jpg']
+      },
+      prada: {
+        id: 'prada',
+        name: 'Prada',
+        neighborhood: 'Tribunales',
+        modality: { es: 'Departamento reservado', en: 'Reserved apartment' },
+        schedule: { es: 'Lunes a Sábados de 09 a 21 hs', en: 'Monday to Saturdays from 09 to 21 hs' },
+        bio: { es: 'Atención personalizada en departamento reservado en la zona de Tribunales.', en: 'Personalized attention in a reserved apartment in Tribunales.' },
+        equipment: { es: 'Camilla, tatami, aire acondicionado, servicio de ducha, frigobar sin cargo.', en: 'Massage table, tatami, air conditioning, shower service, free minibar.' },
+        services: { es: 'Masajes californianos, sensitivos y descontracturantes.', en: 'Californian, sensitive, and deep tissue massages.' },
+        payments: { es: 'Efectivo, transferencia bancaria, Mercado Pago, Prex.', en: 'Cash, bank transfer, Mercado Pago, Prex.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491135796465',
+        isReal: true,
+        images: ['./prada1.jpg', './prada2.jpg', './prada3.jpg', './prada4.jpg']
+      },
+      lupita: {
+        id: 'lupita',
+        name: 'Lupita',
+        neighborhood: 'Tribunales',
+        modality: { es: 'Dpto propio / Hoteles', en: 'Own apt / Hotels' },
+        schedule: { es: 'Lunes a Sábados de 09 a 20 hs', en: 'Monday to Saturdays from 09 to 20 hs' },
+        bio: { es: 'Atención en departamento propio en Tribunales, hoteles y servicio virtual.', en: 'Attention in own apartment in Tribunales, hotels, and virtual service.' },
+        equipment: { es: 'Camilla, tatami, servicio de ducha, aire acondicionado y frigobar.', en: 'Massage table, tatami, shower service, air conditioning, and minibar.' },
+        services: { es: 'Masajes descontracturantes, relajantes, bodymassage y servicio virtual.', en: 'Deep tissue, relaxing massages, body massage, and virtual service.' },
+        payments: { es: 'Efectivo, transferencia bancaria y Mercado Pago.', en: 'Cash, bank transfer, and Mercado Pago.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491128816913',
+        isReal: true,
+        images: ['./lupita1.jpg', './lupita2.jpg', './lupita3.jpg', './lupita4.jpg']
+      },
+      sol: {
+        id: 'sol',
+        name: 'Sol',
+        neighborhood: 'Tribunales',
+        modality: { es: 'Departamento propio', en: 'Own apartment' },
+        schedule: { es: 'Consultar horarios disponibles vía WhatsApp', en: 'Check available schedules via WhatsApp' },
+        bio: { es: 'Atención exclusiva y personalizada en departamento propio en la zona de Tribunales. Un ambiente privado y confortable para desconectarte del estrés.', en: 'Exclusive and personalized attention in an own apartment in Tribunales. A private and comfortable environment to disconnect from stress.' },
+        equipment: { es: 'Gabinete privado climatizado, duchas, excelente ambientación.', en: 'Air-conditioned private studio, showers, excellent atmosphere.' },
+        services: { es: 'Masajes descontracturantes, relajantes y sensitivos.', en: 'Deep tissue, relaxing, and sensitive massages.' },
+        payments: { es: 'Efectivo, transferencia bancaria, Mercado Pago y USD.', en: 'Cash, bank transfer, Mercado Pago, and USD.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491161621255',
+        isReal: true,
+        images: ['./sol1.jpg', './sol2.jpg', './sol3.jpg', './sol4.jpg']
+      },
+      matias: {
+        id: 'matias',
+        name: 'Matias',
+        neighborhood: 'Recoleta',
+        modality: { es: 'Gabinete / Camilla', en: 'Studio / Table' },
+        schedule: { es: 'Lunes a Domingos de 11 a 22 hs', en: 'Monday to Sundays from 11 to 22 hs' },
+        bio: { es: 'Masajes profesionales para relajarte y renovar tu energía. Sesiones sobre camilla con cremas neutras en un ambiente cálido, tranquilo y climatizado.', en: 'Professional massages to relax and renew your energy. Table sessions with neutral creams in a warm, quiet, and air-conditioned environment.' },
+        equipment: { es: 'Camilla, ambiente cálido y climatizado, cremas neutras.', en: 'Massage table, warm and air-conditioned environment, neutral creams.' },
+        services: { es: 'Masajes descontracturantes, relajantes, naturistas, sensitivos y reflexología.', en: 'Deep tissue, relaxing, naturist, sensitive massages, and reflexology.' },
+        payments: { es: 'Efectivo y transferencia bancaria.', en: 'Cash and bank transfer.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491121808338',
+        isReal: true,
+        images: ['./matias1.jpg', './matias2.jpg', './matias3.jpg', './matias4.jpg']
+      },
+      daniela: {
+        id: 'daniela',
+        name: 'Daniela',
+        neighborhood: 'Microcentro',
+        modality: { es: 'Gabinete propio', en: 'Private studio' },
+        schedule: { es: 'Lunes a Sábados de 11 a 19 hs', en: 'Monday to Saturdays from 11 to 19 hs' },
+        bio: { es: 'Atención profesional y personalizada en gabinete privado en Microcentro. Sesiones pensadas para renovar tu energía.', en: 'Professional and personalized attention in a private studio in Microcentro. Sessions designed to renew your energy.' },
+        equipment: { es: 'Gabinete propio, servicio de ducha, ambiente climatizado.', en: 'Private studio, shower service, air-conditioned environment.' },
+        services: { es: 'Masajes relajantes, descontracturantes y deportivos.', en: 'Relaxing, deep tissue, and sports massages.' },
+        payments: { es: 'Efectivo y transferencia bancaria.', en: 'Cash and bank transfer.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491124983744',
+        isReal: true,
+        images: ['./daniela1.jpg', './daniela2.jpg', './daniela3.jpg', './daniela4.jpg']
+      },
+      zaira: {
+        id: 'zaira',
+        name: 'Zaira',
+        neighborhood: 'Caballito',
+        modality: { es: 'Gabinete propio', en: 'Private studio' },
+        schedule: { es: 'Lunes a Domingos de 10 a 20 hs', en: 'Monday to Sundays from 10 to 20 hs' },
+        bio: { es: 'Atención personalizada en ambiente privado en el barrio de Caballito. Terapeutas con experiencia en diversas técnicas corporales.', en: 'Personalized attention in a private environment in Caballito. Therapists experienced in various body techniques.' },
+        equipment: { es: 'Gabinete propio, servicio de ducha, ambiente climatizado.', en: 'Private studio, shower service, air-conditioned environment.' },
+        services: { es: 'Masajes descontracturantes, relajantes, deportivos, ayurveda y terapia tailandesa.', en: 'Deep tissue, relaxing, sports, ayurveda massages, and Thai therapy.' },
+        payments: { es: 'Efectivo y transferencia bancaria.', en: 'Cash and bank transfer.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491168480866',
+        isReal: true,
+        images: ['./zaira1.jpg', './zaira2.jpg', './zaira3.jpg', './zaira4.jpg']
+      },
+      donatella: {
+        id: 'donatella',
+        name: 'Donatella',
+        neighborhood: 'CABA',
+        modality: { es: 'Dpto propio', en: 'Own apartment' },
+        schedule: { es: 'Lunes a Sábados de 11 a 20 hs', en: 'Monday to Saturdays from 11 to 20 hs' },
+        bio: { es: 'Atención personalizada en departamento propio. Un espacio súper cómodo y tranquilo para relajarte por completo.', en: 'Personalized attention in own apartment. A super comfortable and quiet space to relax completely.' },
+        equipment: { es: 'Ducha, aire acondicionado, camilla y tatami.', en: 'Shower, air conditioning, massage table, and tatami.' },
+        services: { es: 'Masajes descontracturantes, relajantes y sensitivos.', en: 'Deep tissue, relaxing, and sensitive massages.' },
+        payments: { es: 'Efectivo y transferencia.', en: 'Cash and transfer.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491127562124',
+        isReal: true,
+        images: ['./donatella1.jpg', './donatella2.jpg', './donatella3.jpg', './donatella4.jpg']
+      },
+      mariela: {
+        id: 'mariela',
+        name: 'Mariela',
+        neighborhood: 'Congreso / Balvanera',
+        modality: { es: 'Departamento propio', en: 'Own apartment' },
+        schedule: { es: 'Lunes a Sábados de 10 a 21 hs (Domingos consultar)', en: 'Monday to Saturdays from 10 to 21 hs (Sundays inquire)' },
+        bio: { es: 'Regalate un momento para aliviar tensiones, relajar el cuerpo y renovar tu energía. Un espacio pensado para que te sientas mejor desde el primer momento.', en: 'Treat yourself to a moment to relieve tension, relax your body, and renew your energy. A space designed to make you feel better from the very first moment.' },
+        equipment: { es: 'Camilla, piedras calientes, almohadillas térmicas y aparatología complementaria.', en: 'Massage table, hot stones, heating pads, and complementary equipment.' },
+        services: { es: 'Masajes terapéuticos y descontracturantes.', en: 'Therapeutic and deep tissue massages.' },
+        payments: { es: 'Efectivo y transferencia.', en: 'Cash and transfer.' },
+        booking: { es: 'Reserva previa por WhatsApp (Solo WhatsApp)', en: 'Prior reservation via WhatsApp (WhatsApp only)' },
+        phone: '5491149461581',
+        isReal: true,
+        images: ['./mariela1.jpg', './mariela2.jpg', './mariela3.jpg', './mariela4.jpg']
+      },
+      mia: {
+        id: 'mia',
+        name: 'Mia',
+        neighborhood: 'Congreso',
+        modality: { es: 'Atención privada', en: 'Private attention' },
+        schedule: { es: 'Lunes a Sábados de 12 a 18 hs', en: 'Monday to Saturdays from 12 to 18 hs' },
+        bio: { es: 'Mi servicio es de masajes sensuales, buscando tu relajación plena y relax. Un momento de paz y desconexión.', en: 'My service is sensual massages, seeking your full relaxation and unwind. A moment of peace and disconnection.' },
+        equipment: { es: 'Ambiente privado y confortable.', en: 'Private and comfortable environment.' },
+        services: { es: 'Masajes sensuales y relajación plena.', en: 'Sensual massages and full relaxation.' },
+        payments: { es: 'Efectivo y transferencia.', en: 'Cash and transfer.' },
+        booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
+        phone: '5491130065404',
+        isReal: true,
+        images: ['./mia1.jpg', './mia2.jpg', './mia3.jpg', './mia4.jpg']
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      document.getElementById('lang-btn').innerText = currentLang === 'es' ? 'EN' : 'ES';
+      const t = translations[currentLang];
+
+      document.getElementById('meta-title').innerText = t.metaTitle;
+      document.getElementById('txt-exit').innerText = t.exit;
+      document.getElementById('txt-search-btn').innerText = t.searchBtn;
+      document.getElementById('txt-drawer-title').innerText = t.drawerTitle;
+      document.getElementById('txt-lbl-name').innerText = t.lblName;
+      document.getElementById('drawer-search-name').placeholder = t.lblNamePh;
+      document.getElementById('txt-lbl-zone').innerText = t.lblZone;
+      document.getElementById('opt-all-zones').innerText = t.optAllZones;
+      document.getElementById('txt-lbl-cat').innerText = t.lblCat;
+      document.getElementById('opt-all-cats').innerText = t.optAllCats;
+      document.getElementById('opt-cat-sens').innerText = t.optCatSens;
+      document.getElementById('opt-cat-terap').innerText = t.optCatTerap;
+      document.getElementById('opt-cat-masc').innerText = t.optCatMasc;
+      document.getElementById('opt-cat-fant').innerText = t.optCatFant;
+      document.getElementById('txt-btn-results').innerText = t.btnResults;
+
+      document.getElementById('txt-age-title').innerText = t.ageTitle;
+      document.getElementById('txt-age-desc').innerHTML = t.ageDesc;
+      document.getElementById('txt-age-enter').innerText = t.ageEnter;
+      document.getElementById('txt-age-exit').innerText = t.ageExit;
+
+      document.getElementById('txt-featured').innerText = t.featured;
+      document.getElementById('tab-all').innerText = t.tabAll;
+      document.getElementById('tab-sens').innerText = t.tabSens;
+      document.getElementById('tab-terap').innerText = t.tabTerap;
+      document.getElementById('tab-masc').innerText = t.tabMasc;
+      document.getElementById('tab-fant').innerText = t.tabFant;
+      document.getElementById('tab-forum').innerText = t.tabForum;
+
+      document.getElementById('txt-cat-sens-title').innerText = t.catSensTitle;
+      document.getElementById('txt-cat-terap-title').innerText = t.catTerapTitle;
+      document.getElementById('txt-cat-masc-title').innerText = t.catMascTitle;
+      document.getElementById('txt-cat-fant-title').innerText = t.catFantTitle;
+
+      document.getElementById('txt-banner-title').innerText = t.bannerTitle;
+      document.getElementById('txt-banner-desc').innerText = t.bannerDesc;
+      document.getElementById('txt-banner-btn').innerText = t.bannerBtn;
+
+      document.getElementById('txt-card-sp-1').innerText = t.cardSp1;
+      document.getElementById('txt-card-sp-2').innerText = t.cardSp2;
+      document.getElementById('txt-card-sp-3').innerText = t.cardSp3;
+      document.getElementById('txt-card-free-1').innerText = t.cardFree1;
+      document.getElementById('txt-card-free-2').innerText = t.cardFree2;
+      document.getElementById('txt-card-pub-1').innerText = t.cardPub1;
+      document.getElementById('txt-card-pub-2').innerText = t.cardPub2;
+      document.getElementById('txt-card-pub-3').innerText = t.cardPub3;
+      document.getElementById('txt-card-fan-1').innerText = t.cardFan1;
+      document.getElementById('txt-card-fan-2').innerText = t.cardFan2;
+      document.getElementById('txt-card-fan-3').innerText = t.cardFan3;
+      document.getElementById('txt-card-fan-4').innerText = t.cardFan4;
+      document.getElementById('txt-card-fan-5').innerText = t.cardFan5;
+      document.getElementById('txt-card-fan-6').innerText = t.cardFan6;
+
+      document.getElementById('txt-forum-title').innerText = t.forumTitle;
+      document.getElementById('txt-forum-sub').innerText = t.forumSub;
+      document.getElementById('txt-forum-rules').innerHTML = t.forumRules;
+      const noTh = document.getElementById('txt-no-threads');
+      if(noTh) noTh.innerText = t.noThreads;
+      document.getElementById('txt-new-thread-title').innerText = t.newThreadTitle;
+      document.getElementById('forum-title-input').placeholder = t.newThreadPh;
+      document.getElementById('opt-f-rec').innerText = t.optFRec;
+      document.getElementById('opt-f-tec').innerText = t.optFTec;
+      document.getElementById('opt-f-gen').innerText = t.optFGen;
+      document.getElementById('forum-body-input').placeholder = t.newThreadBodyPh;
+      document.getElementById('txt-btn-create-thread').innerText = t.btnCreateThread;
+
+      document.getElementById('txt-trust-title').innerText = t.trustTitle;
+      document.getElementById('txt-trust-user-h').innerText = t.trustUserH;
+      document.getElementById('txt-trust-user-list').innerHTML = t.trustUserList;
+      document.getElementById('txt-trust-proto-h').innerText = t.trustProtoH;
+      document.getElementById('txt-trust-proto-p').innerHTML = t.trustProtoP;
+
+      document.getElementById('modal-verified-tag').innerText = t.verifiedTag;
+      document.getElementById('lbl-mod').innerText = t.lblMod;
+      document.getElementById('lbl-bio').innerText = t.lblBio;
+      document.getElementById('lbl-sch').innerText = t.lblSch;
+      document.getElementById('lbl-eq').innerText = t.lblEq;
+      document.getElementById('lbl-serv').innerText = t.lblServ;
+      document.getElementById('lbl-pay').innerText = t.lblPay;
+      document.getElementById('lbl-book').innerText = t.lblBook;
+      document.getElementById('modal-call-btn').innerText = t.btnCall;
+      document.getElementById('modal-wa-btn').innerText = t.btnWa;
+
+      document.getElementById('txt-exp-title').innerText = t.expTitle;
+      document.getElementById('txt-exp-rules').innerText = t.expRules;
+      document.getElementById('new-exp-author').placeholder = t.expAuthorPh;
+      document.getElementById('new-exp-text').placeholder = t.expTextPh;
+      document.getElementById('txt-btn-submit-exp').innerText = t.btnSubmitExp;
+      document.getElementById('txt-floating-cta').innerText = t.floatingCta;
+      document.getElementById('txt-footer').innerHTML = t.footer;
+
+      // Actualizar etiquetas en tarjetas
+      document.querySelectorAll('.tag-modalidad').forEach(el => {
+        if (el.getAttribute('data-' + currentLang)) {
+          el.innerText = el.getAttribute('data-' + currentLang);
+        }
+      });
+
+      // Si el modal está abierto, refrescar su contenido con el idioma actual
+      if (currentActiveProfileId) {
+        openProfileById(currentActiveProfileId, true);
+      }
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIChldmVudCkgPT4ge30pOw==')
+          .catch(() => {});
+      });
+    }
+
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if (e.keyCode === 123 || 
+         (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+         (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    function cleanInput(str) {
+      return str.replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#039;'
+        }[m];
+      });
+    }
+
+    let currentImages = [];
+
+    function quickExit() {
+      window.location.replace('https://www.google.com');
+    }
+
+    function activarModoCamuflaje() {
+      document.title = "Wikipedia, la enciclopedia libre";
+      let metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) metaTheme.setAttribute("content", "#ffffff");
+      
+      document.body.innerHTML = `
+        <div style="background:#fff; min-height:100vh; padding:20px; font-family:sans-serif; color:#000; -webkit-user-select:text; user-select:text;">
+          <h1 style="border-bottom:1px solid #ccc; padding-bottom:5px; font-size:24px;">Economía global</h1>
+          <p style="font-size:14px; line-height:1.6; color:#333;">La economía global es el sistema de comercio e industria en todo el mundo. Comprende todas las actividades económicas de múltiples países que se entrelazan mediante intercambios internacionales...</p>
+          <ul style="color:#0645ad; font-size:14px;"><li>Historia económica</li><li>Sistemas macroeconómicos</li></ul>
+        </div>
+      `;
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        activarModoCamuflaje();
+      }
+    });
+
+    function toggleFilterDrawer() {
+      const drawer = document.getElementById('filter-drawer');
+      const isHidden = drawer.classList.contains('hidden');
+      if (isHidden) {
+        drawer.classList.remove('hidden');
+        if (history.pushState) {
+          history.pushState({ drawer: true }, null, '#search');
+        }
+      } else {
+        drawer.classList.add('hidden');
+        if (window.location.hash === '#search') {
+          history.back();
+        }
+      }
+    }
+
+    function applyDrawerFilters() {
+      const query = document.getElementById('drawer-search-name').value.toLowerCase();
+      const selectedNeighborhood = document.getElementById('drawer-search-neighborhood').value.toLowerCase();
+      const catQuery = document.getElementById('drawer-search-category').value;
+
+      if (catQuery !== 'all') {
+        showCategory(catQuery);
+      } else {
+        document.querySelectorAll('.category-block').forEach(cat => cat.classList.remove('hidden'));
+        document.querySelectorAll('.category-content').forEach(sec => sec.classList.remove('hidden'));
+      }
+
+      const cards = document.querySelectorAll('.card-profile[data-name]');
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name');
+        const zone = card.getAttribute('data-zone');
+        const matchesQuery = !query || name.includes(query) || zone.includes(query);
+        const matchesNeighborhood = !selectedNeighborhood || zone === selectedNeighborhood;
+        
+        if (matchesQuery && matchesNeighborhood) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function openProfileById(id, keepHistory = false) {
+      const p = profilesData[id];
+      if (!p) return;
+
+      currentActiveProfileId = id;
+
+      if (!keepHistory) {
+        if (history.pushState) {
+          history.pushState({ profile: id }, null, '#' + id);
+        } else {
+          window.location.hash = id;
+        }
+      }
+
+      currentImages = p.images;
+      document.getElementById('modal-name').innerText = p.name + ' (' + p.neighborhood + ')';
+      
+      const tagVerified = document.getElementById('modal-verified-tag');
+      tagVerified.innerText = translations[currentLang].verifiedTag;
+
+      document.getElementById('modal-modality').innerText = (p.modality[currentLang] || p.modality.es) + ' - ' + p.neighborhood;
+      document.getElementById('modal-bio').innerText = p.bio[currentLang] || p.bio.es;
+      document.getElementById('modal-schedule').innerText = p.schedule[currentLang] || p.schedule.es;
+      document.getElementById('modal-equipment').innerText = p.equipment[currentLang] || p.equipment.es;
+      document.getElementById('modal-services').innerText = p.services[currentLang] || p.services.es;
+      document.getElementById('modal-payments').innerText = p.payments[currentLang] || p.payments.es;
+      document.getElementById('modal-booking').innerText = p.booking[currentLang] || p.booking.es;
+
+      const wspMsg = encodeURIComponent(`¡Hola ${p.name}! Te vi en Masajistas Privé y quería consultar por un turno.`);
+      document.getElementById('modal-call-btn').href = `tel:+${p.phone}`;
+      document.getElementById('modal-wa-btn').href = `https://wa.me/${p.phone}?text=${wspMsg}`;
+
+      const container = document.getElementById('modal-gallery-container');
+      container.innerHTML = '';
+      
+      p.images.forEach((imgSrc, index) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'img-wrapper';
+        wrapper.onclick = () => openLightbox(index);
+        
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.className = 'main-photo';
+        
+        const wm = document.createElement('div');
+        wm.className = 'watermark-overlay';
+        wm.innerHTML = '<img src="./logo.png" alt="Marca de agua" class="watermark-logo-img">';
+        
+        wrapper.appendChild(img);
+        wrapper.appendChild(wm);
+        container.appendChild(wrapper);
+      });
+
+      loadEmptyComments();
+      document.getElementById('profile-modal').classList.remove('hidden');
+    }
+
+    function acceptAge() {
+      document.getElementById('age-gate').classList.add('hidden');
+    }
+
+    function closeProfile() {
+      currentActiveProfileId = null;
+      document.getElementById('profile-modal').classList.add('hidden');
+      if (window.location.hash && window.location.hash !== '#search') {
+        history.back();
+      }
+    }
+
+    window.addEventListener('popstate', function(event) {
+      const modal = document.getElementById('profile-modal');
+      const drawer = document.getElementById('filter-drawer');
+      const lightbox = document.getElementById('lightbox');
+
+      if (!lightbox.classList.contains('hidden')) {
+        closeLightbox();
+      } else if (!modal.classList.contains('hidden')) {
+        currentActiveProfileId = null;
+        modal.classList.add('hidden');
+      } else if (!drawer.classList.contains('hidden')) {
+        drawer.classList.add('hidden');
+      }
+    });
+
+    function openLightbox(startIndex) {
+      const slider = document.getElementById('lightbox-slider');
+      slider.innerHTML = '';
+
+      currentImages.forEach(imgSrc => {
+        const slide = document.createElement('div');
+        slide.className = 'lightbox-slide';
+
+        const img = document.createElement('img');
+        img.src = imgSrc;
+
+        const wm = document.createElement('div');
+        wm.className = 'watermark-overlay';
+        wm.innerHTML = '<img src="./logo.png" alt="Marca de agua" class="watermark-logo-img">';
+
+        slide.appendChild(img);
+        slide.appendChild(wm);
+        slider.appendChild(slide);
+      });
+
+      document.getElementById('lightbox').classList.remove('hidden');
+      slider.scrollLeft = startIndex * window.innerWidth;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.add('hidden');
+    }
+
+    function loadEmptyComments() {
+      const list = document.getElementById('comments-list');
+      list.innerHTML = `<span class="no-comments">${currentLang === 'es' ? 'Aquí figurarán las opiniones de los clientes.' : 'Client reviews will appear here.'}</span>`;
+    }
+
+    function addExperience() {
+      const authorInput = document.getElementById('new-exp-author');
+      const textInput = document.getElementById('new-exp-text');
+      
+      const author = cleanInput(authorInput.value.trim()) || 'Anónimo';
+      const text = cleanInput(textInput.value.trim());
+
+      if (!text) return;
+
+      const list = document.getElementById('comments-list');
+      
+      const emptyMsg = list.querySelector('.no-comments');
+      if (emptyMsg) emptyMsg.remove();
+
+      const card = document.createElement('div');
+      card.className = 'comment-card';
+      card.innerHTML = `
+        <div class="comment-header">
+          <span class="comment-author">${author}</span>
+          <span class="comment-date">${currentLang === 'es' ? 'Hoy' : 'Today'}</span>
+        </div>
+        <p class="comment-text">${text}</p>
+      `;
+      list.appendChild(card);
+      authorInput.value = '';
+      textInput.value = '';
+    }
+
+    function scrollToForum(btn) {
+      if (btn) updateActiveTab(btn);
+      const forum = document.getElementById('forum-container');
+      if (forum) forum.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function likeThread(btn) {
+      let parts = btn.innerText.split(' ');
+      let count = parseInt(parts[1]) || 0;
+      count++;
+      btn.innerText = '👍 ' + count + (currentLang === 'es' ? ' Me gusta' : ' Likes');
+    }
+
+    function toggleThreadReplies(btn) {
+      alert(currentLang === 'es' ? 'Función de respuestas: Podrás ver y responder hilos detallados en la versión en vivo.' : 'Replies feature: You will be able to view and reply to detailed threads in the live version.');
+    }
+
+    function createForumThread() {
+      const rawTitle = document.getElementById('forum-title-input').value.trim();
+      const category = cleanInput(document.getElementById('forum-category-select').value);
+      const rawBody = document.getElementById('forum-body-input').value.trim();
+
+      const title = cleanInput(rawTitle);
+      const body = cleanInput(rawBody);
+
+      if (!title || !body) {
+        alert(currentLang === 'es' ? 'Por favor completa el título y el contenido del tema.' : 'Please complete the title and content of the topic.');
+        return;
+      }
+
+      const container = document.getElementById('forum-threads-list');
+      
+      const emptyMsg = container.querySelector('.no-threads');
+      if (emptyMsg) emptyMsg.remove();
+
+      const threadCard = document.createElement('div');
+      threadCard.className = 'forum-thread-card';
+      threadCard.innerHTML = `
+        <h4 class="forum-thread-title">${title}</h4>
+        <div class="forum-thread-meta">
+          <span>Por: <strong>Usuario_Privé</strong></span>
+          <span>Categoría: <strong>${category}</strong></span>
+          <span>${currentLang === 'es' ? 'Hace un instante' : 'Just now'}</span>
+        </div>
+        <p class="forum-thread-body">${body}</p>
+        <div class="forum-actions">
+          <button class="btn-forum-action" onclick="likeThread(this)">👍 0 ${currentLang === 'es' ? 'Me gusta' : 'Likes'}</button>
+          <button class="btn-forum-action" onclick="toggleThreadReplies(this)">💬 0 ${currentLang === 'es' ? 'Respuestas' : 'Replies'}</button>
+        </div>
+      `;
+
+      container.prepend(threadCard);
+      document.getElementById('forum-title-input').value = '';
+      document.getElementById('forum-body-input').value = '';
+    }
+
+    function toggleCategory(sectionId) {
+      const sec = document.getElementById(sectionId);
+      const icon = document.getElementById('icon-' + sectionId);
+      if (sec.classList.contains('hidden')) {
+        sec.classList.remove('hidden');
+        if (icon) icon.innerText = '▼';
+      } else {
+        sec.classList.add('hidden');
+        if (icon) icon.innerText = '▶';
+      }
+    }
+
+    function showAllCategories(btn) {
+      if (btn) updateActiveTab(btn);
+      document.querySelectorAll('.category-block').forEach(cat => cat.classList.remove('hidden'));
+      document.querySelectorAll('.category-content').forEach(sec => sec.classList.remove('hidden'));
+      document.querySelectorAll('.toggle-icon').forEach(icon => icon.innerText = '▼');
+    }
+
+    function showCategory(sectionId, btn) {
+      if (btn) updateActiveTab(btn);
+      document.querySelectorAll('.category-block').forEach(cat => cat.classList.add('hidden'));
+      
+      const targetSec = document.getElementById(sectionId);
+      if (targetSec) {
+        targetSec.classList.remove('hidden');
+        const parentBlock = targetSec.closest('.category-block');
+        if (parentBlock) parentBlock.classList.remove('hidden');
+        const icon = document.getElementById('icon-' + sectionId);
+        if (icon) icon.innerText = '▼';
+      }
+    }
+
+    function updateActiveTab(activeBtn) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card-name').forEach(el => {
+        if (!el.querySelector('.verified-check')) {
+          el.innerHTML += ' <span class="verified-check" title="Perfil Verificado">✓</span>';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
