@@ -1,0 +1,10 @@
+@keyframes brilloDorado {
+  0% { box-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37; border-color: #d4af37; }
+  50% { box-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; border-color: #ffd700; }
+  100% { box-shadow: 0 0 5px #d4af37, 0 0 10px #d4af37; border-color: #d4af37; }
+}
+
+.prive-glow, .categoria-prive {
+  animation: brilloDorado 2s infinite ease-in-out;
+  border: 2px solid #ffd700;
+}
