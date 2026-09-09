@@ -225,44 +225,37 @@ function toggleLanguage() {
   document.getElementById('txt-card-fan-5').innerText = t.cardFan5;
   document.getElementById('txt-card-fan-6').innerText = t.cardFan6;
 
-  document.getElementById('txt-forum-title').innerText = t.forumTitle;
-  document.getElementById('txt-forum-sub').innerText = t.forumSub;
-  document.getElementById('txt-forum-rules').innerHTML = t.forumRules;
-  const noTh = document.getElementById('txt-no-threads');
-  if(noTh) noTh.innerText = t.noThreads;
-  document.getElementById('txt-new-thread-title').innerText = t.newThreadTitle;
-  document.getElementById('forum-title-input').placeholder = t.newThreadPh;
-  document.getElementById('opt-f-rec').innerText = t.optFRec;
-  document.getElementById('opt-f-tec').innerText = t.optFTec;
-  document.getElementById('opt-f-gen').innerText = t.optFGen;
-  document.getElementById('forum-body-input').placeholder = t.newThreadBodyPh;
-  document.getElementById('txt-btn-create-thread').innerText = t.btnCreateThread;
+function toggleLanguage() {
+  currentLang = currentLang === 'es' ? 'en' : 'es';
+  
+  const langBtn = document.getElementById('lang-btn');
+  if (langBtn) langBtn.innerText = currentLang === 'es' ? 'EN' : 'ES';
+  
+  const t = translations[currentLang];
+  if (!t) return;
 
-  document.getElementById('txt-trust-title').innerText = t.trustTitle;
-  document.getElementById('txt-trust-user-h').innerText = t.trustUserH;
-  document.getElementById('txt-trust-user-list').innerHTML = t.trustUserList;
-  document.getElementById('txt-trust-proto-h').innerText = t.trustProtoH;
-  document.getElementById('txt-trust-proto-p').innerHTML = t.trustProtoP;
+  const safeSet = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = text;
+  };
 
-  document.getElementById('modal-verified-tag').innerText = t.verifiedTag;
-  document.getElementById('lbl-mod').innerText = t.lblMod;
-  document.getElementById('lbl-bio').innerText = t.lblBio;
-  document.getElementById('lbl-sch').innerText = t.lblSch;
-  document.getElementById('lbl-eq').innerText = t.lblEq;
-  document.getElementById('lbl-serv').innerText = t.lblServ;
-  document.getElementById('lbl-pay').innerText = t.lblPay;
-  document.getElementById('lbl-book').innerText = t.lblBook;
-  document.getElementById('modal-call-btn').innerText = t.btnCall;
-  document.getElementById('modal-wa-btn').innerText = t.btnWa;
-
-  document.getElementById('txt-exp-title').innerText = t.expTitle;
-  document.getElementById('txt-exp-rules').innerText = t.expRules;
-  document.getElementById('new-exp-author').placeholder = t.expAuthorPh;
-  document.getElementById('new-exp-text').placeholder = t.expTextPh;
-  document.getElementById('txt-btn-submit-exp').innerText = t.btnSubmitExp;
-  document.getElementById('txt-floating-cta').innerText = t.floatingCta;
-  document.getElementById('txt-footer').innerHTML = t.footer;
+  safeSet('meta-title', t.metaTitle);
+  safeSet('txt-exit', t.exit);
+  safeSet('txt-search-btn', t.searchBtn);
+  safeSet('txt-drawer-title', t.drawerTitle);
+  safeSet('txt-lbl-name', t.lblName);
+  safeSet('drawer-search-name', t.lblNamePh);
+  safeSet('txt-lbl-zone', t.lblZone);
+  safeSet('opt-all-zones', t.optAllZones);
+  safeSet('txt-lbl-cat', t.lblCat);
+  safeSet('opt-all-cats', t.optAllCats);
+  safeSet('opt-cat-sens', t.optCatSens);
+  safeSet('opt-cat-terap', t.optCatTerap);
+  safeSet('opt-cat-masc', t.optCatMasc);
+  safeSet('opt-cat-fant', t.optCatFant);
+  safeSet('btn-results', t.btnResults);
 }
+
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
