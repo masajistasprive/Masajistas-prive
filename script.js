@@ -574,7 +574,7 @@ function openProfileById(id) {
 
   const container = document.getElementById('modal-gallery-container');
   container.innerHTML = '';
-  
+  container.scrollLeft = 0;
   p.images.forEach((imgSrc, index) => {
     const wrapper = document.createElement('div');
     wrapper.className = 'img-wrapper';
