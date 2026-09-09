@@ -202,3 +202,43 @@ function toggleLanguage() {
   safeSet('btn-results', t.btnResults);
 }
 
+function openProfileById(id) {
+  const modal = document.getElementById('profile-modal');
+  if (modal) modal.classList.remove('hidden');
+  // Acá podés cargar los datos específicos de cada perfil si los tenés mapeados
+}
+
+function closeProfile() {
+  const modal = document.getElementById('profile-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function toggleFilterDrawer() {
+  const drawer = document.getElementById('filter-drawer');
+  if (drawer) drawer.classList.toggle('hidden');
+}
+
+function toggleCategory(categoryId) {
+  const content = document.getElementById(categoryId);
+  if (content) {
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+  }
+}
+
+function showAllCategories(btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.category-content').forEach(c => c.style.display = 'block');
+}
+
+function showCategory(categoryId, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.category-content').forEach(c => c.style.display = 'none');
+  const target = document.getElementById(categoryId);
+  if (target) target.style.display = 'block';
+}
+
+function quickExit() {
+  window.location.href = 'https://www.google.com';
+}
