@@ -313,19 +313,33 @@ header { text-align: center; padding: 20px 20px 10px; }
   letter-spacing: 0.3px; font-weight: 500; display: inline-block;
 }
 
+/* === GALERÍA DEL MODAL CORREGIDA (PC Y MÓVIL) === */
 .modal-gallery-slider {
-  display: flex; gap: 10px; overflow-x: scroll;
-  scroll-snap-type: x mandatory; padding-bottom: 10px; margin-bottom: 16px;
-  -webkit-overflow-scrolling: touch; width: 100%; box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  box-sizing: border-box;
 }
-.modal-gallery-slider::-webkit-scrollbar { height: 4px; }
-.modal-gallery-slider::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+.modal-gallery-slider::-webkit-scrollbar { 
+  height: 4px; 
+}
+
+.modal-gallery-slider::-webkit-scrollbar-thumb { 
+  background: rgba(255,255,255,0.2); 
+  border-radius: 4px; 
+}
 
 .modal-gallery-slider .img-wrapper {
   position: relative; 
   flex: 0 0 85%; 
   width: 85%; 
-  height: auto;
+  height: auto; 
   background: var(--bg-base); 
   border-radius: var(--radius-sm); 
   border: 1px solid var(--border-color);
@@ -334,9 +348,16 @@ header { text-align: center; padding: 20px 20px 10px; }
   align-items: center; 
   justify-content: center;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.modal-gallery-slider img.main-photo { width: 100%; height: 100%; object-fit: cover; }
+.modal-gallery-slider img.main-photo { 
+  width: 100%; 
+  height: auto; 
+  max-height: 70vh;
+  object-fit: contain; /* Evita que las fotos verticales se recorten en cualquier dispositivo */
+  display: block; 
+}
 
 .info-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; margin: 20px 0; }
 .info-box { background: var(--bg-base); border-left: 2px solid var(--accent); padding: 10px 14px; border-radius: var(--radius-sm); }
@@ -402,8 +423,6 @@ header { text-align: center; padding: 20px 20px 10px; }
     display: block !important;
 }
 
-
-
 .floating-cta {
   position: fixed; bottom: 20px; right: 20px; background: #25d366;
   color: #fff; padding: 12px 20px; border-radius: 30px;
@@ -420,7 +439,18 @@ header { text-align: center; padding: 20px 20px 10px; }
   .modal { align-items: center; }
   .modal-content { border-radius: var(--radius-lg); animation: none; max-width: 580px; padding: 32px; }
   .modal-content::before { display: none; }
-  .modal-gallery-slider .img-wrapper { flex: 0 0 60%; height: 360px; }
+  
+  /* Ajustes responsivos optimizados para escritorio */
+  .modal-gallery-slider .img-wrapper { 
+    flex: 0 0 70%; 
+    height: auto; 
+  }
+  
+  .modal-gallery-slider img.main-photo {
+    max-height: 450px;
+    object-fit: contain;
+  }
+
   .forum-section { padding: 32px; }
   .trust-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
 }
@@ -434,25 +464,4 @@ footer {
   margin-top: 50px; padding: 30px 20px; border-top: 1px solid var(--border-color);
   text-align: center; font-size: 0.7rem; color: var(--text-secondary); line-height: 1.6;
 }
-.modal-gallery-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 4px;
-  padding: 0;
-  margin: 0;
-}
 
-.modal-gallery-slider .img-wrapper {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  position: relative;
-  margin: 0;
-}
-
-.modal-gallery-slider img.main-photo {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 0;
-}
