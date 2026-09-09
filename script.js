@@ -21,7 +21,6 @@ const translations = {
     ageDesc: "Este sitio contiene material para adultos. Al ingresar declarás que tenés al menos 18 años y aceptás nuestros términos y condiciones.<br><br><strong>Aviso:</strong> Las masajistas anunciantes no tienen ningún vínculo laboral con este portal; somos únicamente un soporte publicitario.",
     ageEnter: "ENTRAR (+18)",
     ageExit: "SALIR",
-    featured: "Profesionales Destacadas:",
     tabAll: "Todas",
     tabSens: "Sensuales",
     tabTerap: "Terapéuticas",
@@ -103,7 +102,6 @@ const translations = {
     ageDesc: "This portal contains adult material. By entering, you confirm you are at least 18 years old and accept our terms of service.<br><br><strong>Notice:</strong> Advertising masseuses have no employment relationship with this portal; we are solely an advertising medium.",
     ageEnter: "ENTER (+18)",
     ageExit: "EXIT",
-    featured: "Featured Professionals:",
     tabAll: "All",
     tabSens: "Sensual",
     tabTerap: "Therapeutic",
@@ -169,99 +167,105 @@ const translations = {
 
 function toggleLanguage() {
   currentLang = currentLang === 'es' ? 'en' : 'es';
-  document.getElementById('lang-btn').innerText = currentLang === 'es' ? 'EN' : 'ES';
+  const langBtn = document.getElementById('lang-btn');
+  if (langBtn) langBtn.innerText = currentLang === 'es' ? 'EN' : 'ES';
   const t = translations[currentLang];
 
-  document.getElementById('meta-title').innerText = t.metaTitle;
-  document.getElementById('txt-exit').innerText = t.exit;
-  document.getElementById('txt-search-btn').innerText = t.searchBtn;
-  document.getElementById('txt-drawer-title').innerText = t.drawerTitle;
-  document.getElementById('txt-lbl-name').innerText = t.lblName;
-  document.getElementById('drawer-search-name').placeholder = t.lblNamePh;
-  document.getElementById('txt-lbl-zone').innerText = t.lblZone;
-  document.getElementById('opt-all-zones').innerText = t.optAllZones;
-  document.getElementById('txt-lbl-cat').innerText = t.lblCat;
-  document.getElementById('opt-all-cats').innerText = t.optAllCats;
-  document.getElementById('opt-cat-sens').innerText = t.optCatSens;
-  document.getElementById('opt-cat-terap').innerText = t.optCatTerap;
-  document.getElementById('opt-cat-masc').innerText = t.optCatMasc;
-  document.getElementById('opt-cat-fant').innerText = t.optCatFant;
-  document.getElementById('txt-btn-results').innerText = t.btnResults;
+  safeSet('meta-title', t.metaTitle, 'innerText');
+  safeSet('txt-exit', t.exit, 'innerText');
+  safeSet('txt-search-btn', t.searchBtn, 'innerText');
+  safeSet('txt-drawer-title', t.drawerTitle, 'innerText');
+  safeSet('txt-lbl-name', t.lblName, 'innerText');
+  safeSet('drawer-search-name', t.lblNamePh, 'placeholder');
+  safeSet('txt-lbl-zone', t.lblZone, 'innerText');
+  safeSet('opt-all-zones', t.optAllZones, 'innerText');
+  safeSet('txt-lbl-cat', t.lblCat, 'innerText');
+  safeSet('opt-all-cats', t.optAllCats, 'innerText');
+  safeSet('opt-cat-sens', t.optCatSens, 'innerText');
+  safeSet('opt-cat-terap', t.optCatTerap, 'innerText');
+  safeSet('opt-cat-masc', t.optCatMasc, 'innerText');
+  safeSet('opt-cat-fant', t.optCatFant, 'innerText');
+  safeSet('txt-btn-results', t.btnResults, 'innerText');
 
-  document.getElementById('txt-age-title').innerText = t.ageTitle;
-  document.getElementById('txt-age-desc').innerHTML = t.ageDesc;
-  document.getElementById('txt-age-enter').innerText = t.ageEnter;
-  document.getElementById('txt-age-exit').innerText = t.ageExit;
+  safeSet('txt-age-title', t.ageTitle, 'innerText');
+  safeSet('txt-age-desc', t.ageDesc, 'innerHTML');
+  safeSet('txt-age-enter', t.ageEnter, 'innerText');
+  safeSet('txt-age-exit', t.ageExit, 'innerText');
 
-  document.getElementById('txt-featured').innerText = t.featured;
-  document.getElementById('tab-all').innerText = t.tabAll;
-  document.getElementById('tab-sens').innerText = t.tabSens;
-  document.getElementById('tab-terap').innerText = t.tabTerap;
-  document.getElementById('tab-masc').innerText = t.tabMasc;
-  document.getElementById('tab-fant').innerText = t.tabFant;
-  document.getElementById('tab-forum').innerText = t.tabForum;
+  safeSet('tab-all', t.tabAll, 'innerText');
+  safeSet('tab-sens', t.tabSens, 'innerText');
+  safeSet('tab-terap', t.tabTerap, 'innerText');
+  safeSet('tab-masc', t.tabMasc, 'innerText');
+  safeSet('tab-fant', t.tabFant, 'innerText');
+  safeSet('tab-forum', t.tabForum, 'innerText');
 
-  document.getElementById('txt-cat-sens-title').innerText = t.catSensTitle;
-  document.getElementById('txt-cat-terap-title').innerText = t.catTerapTitle;
-  document.getElementById('txt-cat-masc-title').innerText = t.catMascTitle;
-  document.getElementById('txt-cat-fant-title').innerText = t.catFantTitle;
+  safeSet('txt-cat-sens-title', t.catSensTitle, 'innerText');
+  safeSet('txt-cat-terap-title', t.catTerapTitle, 'innerText');
+  safeSet('txt-cat-masc-title', t.catMascTitle, 'innerText');
+  safeSet('txt-cat-fant-title', t.catFantTitle, 'innerText');
 
-  document.getElementById('txt-banner-title').innerText = t.bannerTitle;
-  document.getElementById('txt-banner-desc').innerText = t.bannerDesc;
-  document.getElementById('txt-banner-btn').innerText = t.bannerBtn;
+  safeSet('txt-banner-title', t.bannerTitle, 'innerText');
+  safeSet('txt-banner-desc', t.bannerDesc, 'innerText');
+  safeSet('txt-banner-btn', t.bannerBtn, 'innerText');
 
-  document.getElementById('txt-card-sp-1').innerText = t.cardSp1;
-  document.getElementById('txt-card-sp-2').innerText = t.cardSp2;
-  document.getElementById('txt-card-sp-3').innerText = t.cardSp3;
-  document.getElementById('txt-card-free-1').innerText = t.cardFree1;
-  document.getElementById('txt-card-free-2').innerText = t.cardFree2;
-  document.getElementById('txt-card-pub-1').innerText = t.cardPub1;
-  document.getElementById('txt-card-pub-2').innerText = t.cardPub2;
-  document.getElementById('txt-card-pub-3').innerText = t.cardPub3;
-  document.getElementById('txt-card-fan-1').innerText = t.cardFan1;
-  document.getElementById('txt-card-fan-2').innerText = t.cardFan2;
-  document.getElementById('txt-card-fan-3').innerText = t.cardFan3;
-  document.getElementById('txt-card-fan-4').innerText = t.cardFan4;
-  document.getElementById('txt-card-fan-5').innerText = t.cardFan5;
-  document.getElementById('txt-card-fan-6').innerText = t.cardFan6;
+  safeSet('txt-card-sp-1', t.cardSp1, 'innerText');
+  safeSet('txt-card-sp-2', t.cardSp2, 'innerText');
+  safeSet('txt-card-sp-3', t.cardSp3, 'innerText');
+  safeSet('txt-card-free-1', t.cardFree1, 'innerText');
+  safeSet('txt-card-free-2', t.cardFree2, 'innerText');
+  safeSet('txt-card-pub-1', t.cardPub1, 'innerText');
+  safeSet('txt-card-pub-2', t.cardPub2, 'innerText');
+  safeSet('txt-card-pub-3', t.cardPub3, 'innerText');
+  safeSet('txt-card-fan-1', t.cardFan1, 'innerText');
+  safeSet('txt-card-fan-2', t.cardFan2, 'innerText');
+  safeSet('txt-card-fan-3', t.cardFan3, 'innerText');
+  safeSet('txt-card-fan-4', t.cardFan4, 'innerText');
+  safeSet('txt-card-fan-5', t.cardFan5, 'innerText');
+  safeSet('txt-card-fan-6', t.cardFan6, 'innerText');
 
-  document.getElementById('txt-forum-title').innerText = t.forumTitle;
-  document.getElementById('txt-forum-sub').innerText = t.forumSub;
-  document.getElementById('txt-forum-rules').innerHTML = t.forumRules;
-  const noTh = document.getElementById('txt-no-threads');
-  if(noTh) noTh.innerText = t.noThreads;
-  document.getElementById('txt-new-thread-title').innerText = t.newThreadTitle;
-  document.getElementById('forum-title-input').placeholder = t.newThreadPh;
-  document.getElementById('opt-f-rec').innerText = t.optFRec;
-  document.getElementById('opt-f-tec').innerText = t.optFTec;
-  document.getElementById('opt-f-gen').innerText = t.optFGen;
-  document.getElementById('forum-body-input').placeholder = t.newThreadBodyPh;
-  document.getElementById('txt-btn-create-thread').innerText = t.btnCreateThread;
+  safeSet('txt-forum-title', t.forumTitle, 'innerText');
+  safeSet('txt-forum-sub', t.forumSub, 'innerText');
+  safeSet('txt-forum-rules', t.forumRules, 'innerHTML');
+  safeSet('txt-no-threads', t.noThreads, 'innerText');
+  safeSet('txt-new-thread-title', t.newThreadTitle, 'innerText');
+  safeSet('forum-title-input', t.newThreadPh, 'placeholder');
+  safeSet('opt-f-rec', t.optFRec, 'innerText');
+  safeSet('opt-f-tec', t.optFTec, 'innerText');
+  safeSet('opt-f-gen', t.optFGen, 'innerText');
+  safeSet('forum-body-input', t.newThreadBodyPh, 'placeholder');
+  safeSet('txt-btn-create-thread', t.btnCreateThread, 'innerText');
 
-  document.getElementById('txt-trust-title').innerText = t.trustTitle;
-  document.getElementById('txt-trust-user-h').innerText = t.trustUserH;
-  document.getElementById('txt-trust-user-list').innerHTML = t.trustUserList;
-  document.getElementById('txt-trust-proto-h').innerText = t.trustProtoH;
-  document.getElementById('txt-trust-proto-p').innerHTML = t.trustProtoP;
+  safeSet('txt-trust-title', t.trustTitle, 'innerText');
+  safeSet('txt-trust-user-h', t.trustUserH, 'innerText');
+  safeSet('txt-trust-user-list', t.trustUserList, 'innerHTML');
+  safeSet('txt-trust-proto-h', t.trustProtoH, 'innerText');
+  safeSet('txt-trust-proto-p', t.trustProtoP, 'innerHTML');
 
-  document.getElementById('modal-verified-tag').innerText = t.verifiedTag;
-  document.getElementById('lbl-mod').innerText = t.lblMod;
-  document.getElementById('lbl-bio').innerText = t.lblBio;
-  document.getElementById('lbl-sch').innerText = t.lblSch;
-  document.getElementById('lbl-eq').innerText = t.lblEq;
-  document.getElementById('lbl-serv').innerText = t.lblServ;
-  document.getElementById('lbl-pay').innerText = t.lblPay;
-  document.getElementById('lbl-book').innerText = t.lblBook;
-  document.getElementById('modal-call-btn').innerText = t.btnCall;
-  document.getElementById('modal-wa-btn').innerText = t.btnWa;
+  safeSet('modal-verified-tag', t.verifiedTag, 'innerText');
+  safeSet('lbl-mod', t.lblMod, 'innerText');
+  safeSet('lbl-bio', t.lblBio, 'innerText');
+  safeSet('lbl-sch', t.lblSch, 'innerText');
+  safeSet('lbl-eq', t.lblEq, 'innerText');
+  safeSet('lbl-serv', t.lblServ, 'innerText');
+  safeSet('lbl-pay', t.lblPay, 'innerText');
+  safeSet('lbl-book', t.lblBook, 'innerText');
+  safeSet('modal-call-btn', t.btnCall, 'innerText');
+  safeSet('modal-wa-btn', t.btnWa, 'innerText');
 
-  document.getElementById('txt-exp-title').innerText = t.expTitle;
-  document.getElementById('txt-exp-rules').innerText = t.expRules;
-  document.getElementById('new-exp-author').placeholder = t.expAuthorPh;
-  document.getElementById('new-exp-text').placeholder = t.expTextPh;
-  document.getElementById('txt-btn-submit-exp').innerText = t.btnSubmitExp;
-  document.getElementById('txt-floating-cta').innerText = t.floatingCta;
-  document.getElementById('txt-footer').innerHTML = t.footer;
+  safeSet('txt-exp-title', t.expTitle, 'innerText');
+  safeSet('txt-exp-rules', t.expRules, 'innerText');
+  safeSet('new-exp-author', t.expAuthorPh, 'placeholder');
+  safeSet('new-exp-text', t.expTextPh, 'placeholder');
+  safeSet('txt-btn-submit-exp', t.btnSubmitExp, 'innerText');
+  safeSet('txt-floating-cta', t.floatingCta, 'innerText');
+  safeSet('txt-footer', t.footer, 'innerHTML');
+}
+
+function safeSet(id, value, property) {
+  const el = document.getElementById(id);
+  if (el) {
+    el[property] = value;
+  }
 }
 
 if ('serviceWorker' in navigator) {
@@ -392,7 +396,7 @@ const profilesData = {
     neighborhood: 'Microcentro',
     modality: 'Gabinete propio',
     schedule: 'Lunes a Sábados de 11 a 19 hs',
-    bio: 'Atención profesional y personalizada en gabinete privado en Microcentro. Sesiones pensadas para renovar tu energía.',
+    bio: 'Atención profesional y personalizada in gabinete privado en Microcentro. Sesiones pensadas para renovar tu energía.',
     equipment: 'Gabinete propio, servicio de ducha, ambiente climatizado.',
     services: 'Masajes relajantes, descontracturantes y deportivos.',
     payments: 'Efectivo y transferencia bancaria.',
@@ -777,3 +781,4 @@ function updateActiveTab(activeBtn) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   if (activeBtn) activeBtn.classList.add('active');
 }
+
