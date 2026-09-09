@@ -74,7 +74,7 @@
       <h1 id="txt-age-title">Este es un sitio para adultos</h1>
       <p id="txt-age-desc">Este sitio contiene material para adultos. Al ingresar declarás que tenés al menos 18 años y aceptás nuestros términos y condiciones.<br><br><strong>Aviso:</strong> Las masajistas anunciantes no tienen ningún vínculo laboral con este portal; somos únicamente un soporte publicitario.</p>
       <div class="age-gate-buttons">
-        <button class="btn-age-enter" onclick="document.getElementById('age-gate').style.display='none'; document.getElementById('age-gate').remove();" id="txt-age-enter">ENTRAR (+18)</button>
+        <button class="btn-age-enter" onclick="acceptAge()" id="txt-age-enter">ENTRAR (+18)</button>
         <a href="https://www.google.com" class="btn-age-exit" id="txt-age-exit">SALIR</a>
       </div>
     </div>
@@ -324,7 +324,7 @@
       </div>
     </div>
 
-    <!-- 4. FANTASÍAS -->
+    <!-- 4. FANTASÍAS (VACÍO) -->
     <div class="category-block">
       <div class="section-title-toggle prive-header" onclick="toggleCategory('sec-fantasias')">
         <span id="txt-cat-fant-title">Fantasías</span>
