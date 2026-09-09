@@ -168,7 +168,7 @@ const translations = {
 function toggleLanguage() {
   currentLang = currentLang === 'es' ? 'en' : 'es';
   const langBtn = document.getElementById('lang-btn');
-  if (langBtn) langBtn.innerText = currentLang === 'es' ? 'EN' : 'ES';
+  if (langBtn) langBtn.innerText = currentLang === 'es' ? '🇪🇸' : '🇬🇧';
   const t = translations[currentLang];
 
   safeSet('meta-title', t.metaTitle, 'innerText');
@@ -259,6 +259,11 @@ function toggleLanguage() {
   safeSet('txt-btn-submit-exp', t.btnSubmitExp, 'innerText');
   safeSet('txt-floating-cta', t.floatingCta, 'innerText');
   safeSet('txt-footer', t.footer, 'innerHTML');
+
+  const modal = document.getElementById('profile-modal');
+  if (modal && !modal.classList.contains('hidden') && window.currentOpenProfileId) {
+    openProfileById(window.currentOpenProfileId);
+  }
 }
 
 function safeSet(id, value, property) {
@@ -304,180 +309,168 @@ const profilesData = {
     id: 'jennyfer',
     name: 'Jennyfer',
     neighborhood: 'Tribunales',
-    modality: 'Consultorio propio',
-    schedule: 'Lunes a Viernes de 08 a 19hs (Sábados y Domingos previa reserva con seña)',
-    bio: 'Atención profesional y personalizada in consultorio privado equipado en la zona de Tribunales.',
-    equipment: 'Ducha, aire acondicionado, gabinete cosmetológico, gabinete SPA, frigobar.',
-    services: 'Masajes profesionales, depilación láser, cosmetología facial y corporal.',
-    payments: 'Efectivo, transferencia (Tarjetas de crédito y débito tienen 15% de recargo).',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Consultorio propio', en: 'Private office' },
+    schedule: { es: 'Lunes a Viernes de 08 a 19hs (Sábados y Domingos previa reserva con seña)', en: 'Monday to Friday from 08 to 19hs (Saturdays and Sundays prior reservation with deposit)' },
+    bio: { es: 'Atención profesional y personalizada en consultorio privado equipado en la zona de Tribunales.', en: 'Professional and personalized attention in a private office equipped in the Tribunales area.' },
+    equipment: { es: 'Ducha, aire acondicionado, gabinete cosmetológico, gabinete SPA, frigobar.', en: 'Shower, air conditioning, cosmetological office, SPA office, minibar.' },
+    services: { es: 'Masajes profesionales, depilación láser, cosmetología facial y corporal.', en: 'Professional massages, laser hair removal, facial and body cosmetology.' },
+    payments: { es: 'Efectivo, transferencia (Tarjetas de crédito y débito tienen 15% de recargo).', en: 'Cash, transfer (Credit and debit cards have a 15% surcharge).' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491124078332',
-    isReal: true,
     images: ['./jennyfer1.jpg', './jennyfer2.jpg', './jennyfer3.jpg', './jennyfer4.jpg']
   },
   deby: {
     id: 'deby',
     name: 'Deby',
     neighborhood: 'Caballito',
-    modality: 'Gabinete propio',
-    schedule: 'Lunes a Domingos de 08 a 00 hs',
-    bio: 'Atención personalizada en gabinete propio en el barrio de Caballito.',
-    equipment: 'Camilla, ducha, ambiente climatizado.',
-    services: 'Masajes relajante, sensual, sensitivo, prostático, descontracturante.',
-    payments: 'Efectivo (Mercado Pago con recargo)',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Gabinete propio', en: 'Private studio' },
+    schedule: { es: 'Lunes a Domingos de 08 a 00 hs', en: 'Monday to Sunday from 08 to 00 hs' },
+    bio: { es: 'Atención personalizada en gabinete propio en el barrio de Caballito.', en: 'Personalized attention in a private studio in the Caballito neighborhood.' },
+    equipment: { es: 'Camilla, ducha, ambiente climatizado.', en: 'Massage table, shower, air-conditioned environment.' },
+    services: { es: 'Masajes relajante, sensual, sensitivo, prostático, descontracturante.', en: 'Relaxing, sensual, sensitive, prostatic, deep tissue massages.' },
+    payments: { es: 'Efectivo (Mercado Pago con recargo)', en: 'Cash (Mercado Pago with surcharge)' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491176540982',
-    isReal: true,
     images: ['./deby1.jpg', './deby2.jpg', './deby3.jpg', './deby4.jpg']
   },
   prada: {
     id: 'prada',
     name: 'Prada',
     neighborhood: 'Tribunales',
-    modality: 'Departamento reservado',
-    schedule: 'Lunes a Sábados de 09 a 21 hs',
-    bio: 'Atención personalizada en departamento reservado en la zona de Tribunales.',
-    equipment: 'Camilla, tatami, aire acondicionado, servicio de ducha, frigobar sin cargo.',
-    services: 'Masajes californianos, sensitivos y descontracturantes.',
-    payments: 'Efectivo, transferencia bancaria, Mercado Pago, Prex.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Departamento reservado', en: 'Reserved apartment' },
+    schedule: { es: 'Lunes a Sábados de 09 a 21 hs', en: 'Monday to Saturdays from 09 to 21 hs' },
+    bio: { es: 'Atención personalizada en departamento reservado en la zona de Tribunales.', en: 'Personalized attention in a reserved apartment in the Tribunales area.' },
+    equipment: { es: 'Camilla, tatami, aire acondicionado, servicio de ducha, frigobar sin cargo.', en: 'Massage table, tatami, air conditioning, shower service, free minibar.' },
+    services: { es: 'Masajes californianos, sensitivos y descontracturantes.', en: 'Californian, sensitive and deep tissue massages.' },
+    payments: { es: 'Efectivo, transferencia bancaria, Mercado Pago, Prex.', en: 'Cash, bank transfer, Mercado Pago, Prex.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491135796465',
-    isReal: true,
     images: ['./prada1.jpg', './prada2.jpg', './prada3.jpg', './prada4.jpg']
   },
   lupita: {
     id: 'lupita',
     name: 'Lupita',
     neighborhood: 'Tribunales',
-    modality: 'Dpto propio / Hoteles',
-    schedule: 'Lunes a Sábados de 09 a 20 hs',
-    bio: 'Atención en departamento propio en Tribunales, hoteles y servicio virtual.',
-    equipment: 'Camilla, tatami, servicio de ducha, aire acondicionado y frigobar.',
-    services: 'Masajes descontracturantes, relajantes, bodymassage y servicio virtual.',
-    payments: 'Efectivo, transferencia bancaria y Mercado Pago.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Dpto propio / Hoteles', en: 'Private apt / Hotels' },
+    schedule: { es: 'Lunes a Sábados de 09 a 20 hs', en: 'Monday to Saturdays from 09 to 20 hs' },
+    bio: { es: 'Atención en departamento propio en Tribunales, hoteles y servicio virtual.', en: 'Attention in private apartment in Tribunales, hotels and virtual service.' },
+    equipment: { es: 'Camilla, tatami, servicio de ducha, aire acondicionado y frigobar.', en: 'Massage table, tatami, shower service, air conditioning and minibar.' },
+    services: { es: 'Masajes descontracturantes, relajantes, bodymassage y servicio virtual.', en: 'Deep tissue, relaxing massages, body massage and virtual service.' },
+    payments: { es: 'Efectivo, transferencia bancaria y Mercado Pago.', en: 'Cash, bank transfer and Mercado Pago.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491128816913',
-    isReal: true,
     images: ['./lupita1.jpg', './lupita2.jpg', './lupita3.jpg', './lupita4.jpg']
   },
   sol: {
     id: 'sol',
     name: 'Sol',
     neighborhood: 'Tribunales',
-    modality: 'Departamento propio',
-    schedule: 'Consultar horarios disponibles vía WhatsApp',
-    bio: 'Atención exclusiva y personalizada en departamento propio en la zona de Tribunales. Un ambiente privado y confortable para desconectarte del estrés.',
-    equipment: 'Gabinete privado climatizado, duchas, excelente ambientación.',
-    services: 'Masajes descontracturantes, relajantes y sensitivos.',
-    payments: 'Efectivo, transferencia bancaria, Mercado Pago y USD.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Departamento propio', en: 'Private apartment' },
+    schedule: { es: 'Consultar horarios disponibles vía WhatsApp', en: 'Check available schedules via WhatsApp' },
+    bio: { es: 'Atención exclusiva y personalizada en departamento propio en la zona de Tribunales. Un ambiente privado y confortable para desconectarte del estrés.', en: 'Exclusive and personalized attention in a private apartment in the Tribunales area. A private and comfortable environment to disconnect from stress.' },
+    equipment: { es: 'Gabinete privado climatizado, duchas, excelente ambientación.', en: 'Air-conditioned private studio, showers, excellent ambiance.' },
+    services: { es: 'Masajes descontracturantes, relajantes y sensitivos.', en: 'Deep tissue, relaxing and sensitive massages.' },
+    payments: { es: 'Efectivo, transferencia bancaria, Mercado Pago y USD.', en: 'Cash, bank transfer, Mercado Pago and USD.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491161621255',
-    isReal: true,
     images: ['./sol1.jpg', './sol2.jpg', './sol3.jpg', './sol4.jpg']
   },
   matias: {
     id: 'matias',
     name: 'Matias',
     neighborhood: 'Recoleta',
-    modality: 'Gabinete / Camilla',
-    schedule: 'Lunes a Domingos de 11 a 22 hs',
-    bio: 'Masajes profesionales para relajarte y renovar tu energía. Sesiones sobre camilla con cremas neutras en un ambiente cálido, tranquilo y climatizado.',
-    equipment: 'Camilla, ambiente cálido y climatizado, cremas neutras.',
-    services: 'Masajes descontracturantes, relajantes, naturistas, sensitivos y reflexología.',
-    payments: 'Efectivo y transferencia bancaria.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Gabinete / Camilla', en: 'Studio / Table' },
+    schedule: { es: 'Lunes a Domingos de 11 a 22 hs', en: 'Monday to Sundays from 11 to 22 hs' },
+    bio: { es: 'Masajes profesionales para relajarte y renovar tu energía. Sesiones sobre camilla con cremas neutras en un ambiente cálido, tranquilo y climatizado.', en: 'Professional massages to relax and renew your energy. Sessions on a table with neutral creams in a warm, quiet and air-conditioned environment.' },
+    equipment: { es: 'Camilla, ambiente cálido y climatizado, cremas neutras.', en: 'Massage table, warm and air-conditioned environment, neutral creams.' },
+    services: { es: 'Masajes descontracturantes, relajantes, naturistas, sensitivos y reflexología.', en: 'Deep tissue, relaxing, naturist, sensitive massages and reflexology.' },
+    payments: { es: 'Efectivo y transferencia bancaria.', en: 'Cash and bank transfer.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491121808338',
-    isReal: true,
     images: ['./matias1.jpg', './matias2.jpg', './matias3.jpg', './matias4.jpg']
   },
   daniela: {
     id: 'daniela',
     name: 'Daniela',
     neighborhood: 'Microcentro',
-    modality: 'Gabinete propio',
-    schedule: 'Lunes a Sábados de 11 a 19 hs',
-    bio: 'Atención profesional y personalizada in gabinete privado en Microcentro. Sesiones pensadas para renovar tu energía.',
-    equipment: 'Gabinete propio, servicio de ducha, ambiente climatizado.',
-    services: 'Masajes relajantes, descontracturantes y deportivos.',
-    payments: 'Efectivo y transferencia bancaria.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Gabinete propio', en: 'Private studio' },
+    schedule: { es: 'Lunes a Sábados de 11 a 19 hs', en: 'Monday to Saturdays from 11 to 19 hs' },
+    bio: { es: 'Atención profesional y personalizada en gabinete privado en Microcentro. Sesiones pensadas para renovar tu energía.', en: 'Professional and personalized attention in a private studio in Microcentro. Sessions designed to renew your energy.' },
+    equipment: { es: 'Gabinete propio, servicio de ducha, ambiente climatizado.', en: 'Private studio, shower service, air-conditioned environment.' },
+    services: { es: 'Masajes relajantes, descontracturantes y deportivos.', en: 'Relaxing, deep tissue and sports massages.' },
+    payments: { es: 'Efectivo y transferencia bancaria.', en: 'Cash and bank transfer.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491124983744',
-    isReal: true,
     images: ['./daniela1.jpg', './daniela2.jpg', './daniela3.jpg', './daniela4.jpg']
   },
   zaira: {
     id: 'zaira',
     name: 'Zaira',
     neighborhood: 'Caballito',
-    modality: 'Gabinete propio',
-    schedule: 'Lunes a Domingos de 10 a 20 hs',
-    bio: 'Atención personalizada en ambiente privado en el barrio de Caballito. Terapeutas con experiencia en diversas técnicas corporales.',
-    equipment: 'Gabinete propio, servicio de ducha, ambiente climatizado.',
-    services: 'Masajes descontracturantes, relajantes, deportivos, ayurveda y terapia tailandesa.',
-    payments: 'Efectivo y transferencia bancaria.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Gabinete propio', en: 'Private studio' },
+    schedule: { es: 'Lunes a Domingos de 10 a 20 hs', en: 'Monday to Sundays from 10 to 20 hs' },
+    bio: { es: 'Atención personalizada en ambiente privado en el barrio de Caballito. Terapeutas con experiencia en diversas técnicas corporales.', en: 'Personalized attention in a private environment in the Caballito neighborhood. Therapists with experience in various body techniques.' },
+    equipment: { es: 'Gabinete propio, servicio de ducha, ambiente climatizado.', en: 'Private studio, shower service, air-conditioned environment.' },
+    services: { es: 'Masajes descontracturantes, relajantes, deportivos, ayurveda y terapia tailandesa.', en: 'Deep tissue, relaxing, sports, ayurveda and Thai therapy massages.' },
+    payments: { es: 'Efectivo y transferencia bancaria.', en: 'Cash and bank transfer.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491168480866',
-    isReal: true,
     images: ['./zaira1.jpg', './zaira2.jpg', './zaira3.jpg', './zaira4.jpg']
   },
   donatella: {
     id: 'donatella',
     name: 'Donatella',
     neighborhood: 'CABA',
-    modality: 'Dpto propio',
-    schedule: 'Lunes a Sábados de 11 a 20 hs',
-    bio: 'Atención personalizada en departamento propio. Un espacio súper cómodo y tranquilo para relajarte por completo.',
-    equipment: 'Ducha, aire acondicionado, camilla y tatami.',
-    services: 'Masajes descontracturantes, relajantes y sensitivos.',
-    payments: 'Efectivo y transferencia.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Dpto propio', en: 'Private apt' },
+    schedule: { es: 'Lunes a Sábados de 11 a 20 hs', en: 'Monday to Saturdays from 11 to 20 hs' },
+    bio: { es: 'Atención personalizada en departamento propio. Un espacio súper cómodo y tranquilo para relajarte por completo.', en: 'Personalized attention in a private apartment. A super comfortable and quiet space to relax completely.' },
+    equipment: { es: 'Ducha, aire acondicionado, camilla y tatami.', en: 'Shower, air conditioning, massage table and tatami.' },
+    services: { es: 'Masajes descontracturantes, relajantes y sensitivos.', en: 'Deep tissue, relaxing and sensitive massages.' },
+    payments: { es: 'Efectivo y transferencia.', en: 'Cash and transfer.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491127562124',
-    isReal: true,
     images: ['./donatella1.jpg', './donatella2.jpg', './donatella3.jpg', './donatella4.jpg']
   },
   mariela: {
     id: 'mariela',
     name: 'Mariela',
     neighborhood: 'Congreso / Balvanera',
-    modality: 'Departamento propio',
-    schedule: 'Lunes a Sábados de 10 a 21 hs (Domingos consultar)',
-    bio: 'Regalate un momento para aliviar tensiones, relajar el cuerpo y renovar tu energía. Un espacio pensado para que te sientas mejor desde el primer momento.',
-    equipment: 'Camilla, piedras calientes, almohadillas térmicas y aparatología complementaria.',
-    services: 'Masajes terapéuticos y descontracturantes.',
-    payments: 'Efectivo y transferencia.',
-    booking: 'Reserva previa por WhatsApp (Solo WhatsApp)',
+    modality: { es: 'Departamento propio', en: 'Private apartment' },
+    schedule: { es: 'Lunes a Sábados de 10 a 21 hs (Domingos consultar)', en: 'Monday to Saturdays from 10 to 21 hs (Sundays inquire)' },
+    bio: { es: 'Regalate un momento para aliviar tensiones, relajar el cuerpo y renovar tu energía. Un espacio pensado para que te sientas mejor desde el primer momento.', en: 'Treat yourself to a moment to relieve tensions, relax the body and renew your energy. A space designed to make you feel better from the first moment.' },
+    equipment: { es: 'Camilla, piedras calientes, almohadillas térmicas y aparatología complementaria.', en: 'Massage table, hot stones, thermal pads and complementary equipment.' },
+    services: { es: 'Masajes terapéuticos y descontracturantes.', en: 'Therapeutic and deep tissue massages.' },
+    payments: { es: 'Efectivo y transferencia.', en: 'Cash and transfer.' },
+    booking: { es: 'Reserva previa por WhatsApp (Solo WhatsApp)', en: 'Prior reservation via WhatsApp (WhatsApp only)' },
     phone: '5491149461581',
-    isReal: true,
     images: ['./mariela1.jpg', './mariela2.jpg', './mariela3.jpg', './mariela4.jpg']
   },
   mia: {
     id: 'mia',
     name: 'Mia',
     neighborhood: 'Congreso',
-    modality: 'Atención privada',
-    schedule: 'Lunes a Sábados de 12 a 18 hs',
-    bio: 'Mi servicio es de masajes sensuales, buscando tu relajación plena y relax. Un momento de paz y desconexión.',
-    equipment: 'Ambiente privado y confortable.',
-    services: 'Masajes sensuales y relajación plena.',
-    payments: 'Efectivo y transferencia.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Atención privada', en: 'Private attention' },
+    schedule: { es: 'Lunes a Sábados de 12 a 18 hs', en: 'Monday to Saturdays from 12 to 18 hs' },
+    bio: { es: 'Mi servicio es de masajes sensuales, buscando tu relajación plena y relax. Un momento de paz y desconexión.', en: 'My service is sensual massages, seeking your full relaxation and unwind. A moment of peace and disconnection.' },
+    equipment: { es: 'Ambiente privado y confortable.', en: 'Private and comfortable environment.' },
+    services: { es: 'Masajes sensuales y relajación plena.', en: 'Sensual massages and full relaxation.' },
+    payments: { es: 'Efectivo y transferencia.', en: 'Cash and transfer.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491130065404',
-    isReal: true,
     images: ['./mia1.jpg', './mia2.jpg', './mia3.jpg', './mia4.jpg']
   },
   celeste: {
     id: 'celeste',
     name: 'Celeste',
     neighborhood: 'Congreso',
-    modality: 'Gabinete / Domicilio',
-    schedule: 'Lunes a Viernes de 10 a 17 hs',
-    bio: 'Atención personalizada en gabinete y domicilios en la zona de Congreso.',
-    equipment: 'Gabinete privado, ambiente climatizado.',
-    services: 'Masajes relajantes y descontracturantes.',
-    payments: 'Efectivo y transferencia.',
-    booking: 'Reserva previa por WhatsApp',
+    modality: { es: 'Gabinete / Domicilio', en: 'Studio / Home visit' },
+    schedule: { es: 'Lunes a Viernes de 10 a 17 hs', en: 'Monday to Friday from 10 to 17 hs' },
+    bio: { es: 'Atención personalizada en gabinete y domicilios en la zona de Congreso.', en: 'Personalized attention in studio and home visits in the Congreso area.' },
+    equipment: { es: 'Gabinete privado, ambiente climatizado.', en: 'Private studio, air-conditioned environment.' },
+    services: { es: 'Masajes relajantes y descontracturantes.', en: 'Relaxing and deep tissue massages.' },
+    payments: { es: 'Efectivo y transferencia.', en: 'Cash and transfer.' },
+    booking: { es: 'Reserva previa por WhatsApp', en: 'Prior reservation via WhatsApp' },
     phone: '5491157597174',
-    isReal: true,
     images: ['./celeste1.jpg', './celeste2.jpg', './celeste3.jpg', './celeste4.jpg']
   }
 };
@@ -553,6 +546,8 @@ function openProfileById(id) {
   const p = profilesData[id];
   if (!p) return;
 
+  window.currentOpenProfileId = id;
+
   if (history.pushState) {
     history.pushState({ profile: id }, null, '#' + id);
   } else {
@@ -565,13 +560,13 @@ function openProfileById(id) {
   const tagVerified = document.getElementById('modal-verified-tag');
   tagVerified.innerText = translations[currentLang].verifiedTag;
 
-  document.getElementById('modal-modality').innerText = p.modality + ' - ' + p.neighborhood;
-  document.getElementById('modal-bio').innerText = p.bio;
-  document.getElementById('modal-schedule').innerText = p.schedule;
-  document.getElementById('modal-equipment').innerText = p.equipment;
-  document.getElementById('modal-services').innerText = p.services;
-  document.getElementById('modal-payments').innerText = p.payments;
-  document.getElementById('modal-booking').innerText = p.booking;
+  document.getElementById('modal-modality').innerText = p.modality[currentLang] + ' - ' + p.neighborhood;
+  document.getElementById('modal-bio').innerText = p.bio[currentLang];
+  document.getElementById('modal-schedule').innerText = p.schedule[currentLang];
+  document.getElementById('modal-equipment').innerText = p.equipment[currentLang];
+  document.getElementById('modal-services').innerText = p.services[currentLang];
+  document.getElementById('modal-payments').innerText = p.payments[currentLang];
+  document.getElementById('modal-booking').innerText = p.booking[currentLang];
 
   const wspMsg = encodeURIComponent(`¡Hola ${p.name}! Te vi en Masajistas Privé y quería consultar por un turno.`);
   document.getElementById('modal-call-btn').href = `tel:+${p.phone}`;
@@ -608,6 +603,7 @@ function acceptAge() {
 
 function closeProfile() {
   document.getElementById('profile-modal').classList.add('hidden');
+  window.currentOpenProfileId = null;
   if (window.location.hash && window.location.hash !== '#search') {
     history.back();
   }
