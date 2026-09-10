@@ -290,6 +290,21 @@ document.addEventListener('keydown', e => {
   }
 });
 
+// Función para barajar los perfiles de manera independiente en cada categoría al cargar
+function shuffleProfiles() {
+  const grids = document.querySelectorAll('.category-content .grid-2');
+  grids.forEach(grid => {
+    const cards = Array.from(grid.children);
+    // Algoritmo de mezcla Fisher-Yates
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      grid.appendChild(cards[j]); // Reorganiza los elementos aleatoriamente dentro del grid
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', shuffleProfiles);
+
 function cleanInput(str) {
   return str.replace(/[&<>"']/g, function(m) {
     return {
@@ -574,7 +589,7 @@ function openProfileById(id) {
 
   const container = document.getElementById('modal-gallery-container');
   container.innerHTML = '';
-    container.scrollLeft = 0;
+  container.scrollLeft = 0;
   setTimeout(() => {
     container.scrollLeft = 0;
   }, 50);
