@@ -516,6 +516,64 @@
   window.query = query;
   window.orderBy = orderBy;
 </script>
+  <script>
+  // Parche automático para guardar las experiencias en Firestore sin tocar el script.js
+  document.addEventListener("DOMContentLoaded", () => {
+    const originalAddExp = window.addExperience;
+    // Si detectamos el botón de enviar experiencia, interceptamos su clic
+    const submitBtn = document.querySelector('button[onclick*="addExperience"]');
+    if (submitBtn) {
+      submitBtn.removeAttribute('onclick');
+      submitBtn.addEventListener('click', async () => {
+        const authorInput = document.getElementById('new-exp-author');
+        const textInput = document.getElementById('new-exp-text');
+        if (!authorInput || !textInput) return;
+        
+        const author = authorInput.value.trim() || 'Anónimo';
+        const text = textInput.value.trim();
+        if (!text) return;
+
+        try {
+          await window.addDoc(window.collection(window.db, "experiencias"), {
+            author: author,
+            text: text,
+            timestamp: new Date()
+          });
+          authorInput.value = '';
+          textInput.value = '';
+        } catch (e) {
+          console.error("Error al guardar:", e);
+        }
+      });
+    }
+
+    // Cargar mensajes en tiempo real
+    if (window.db) {
+      const list = document.getElementById('comments-list');
+      if (list) {
+        const q = window.query(window.collection(window.db, "experiencias"), window.orderBy("timestamp", "desc"));
+        window.onSnapshot(q, (snapshot) => {
+          if (snapshot.empty) return;
+          list.innerHTML = '';
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            const card = document.createElement('div');
+            card.className = 'comment-card';
+            card.innerHTML = `
+              <div class="comment-header">
+                <span class="comment-author">${data.author}</span>
+                <span class="comment-date">Reciente</span>
+              </div>
+              <p class="comment-text">${data.text}</p>
+            `;
+            list.appendChild(card);
+          });
+        });
+      }
+    }
+  });
+</script>
+
 
 </body>
 </html>
