@@ -64,7 +64,7 @@ const translations = {
     trustUserList: "<li>Coordinación transparente y directa vía WhatsApp sin intermediarios.</li><li>Respeto mutuo y trato cordial durante la atención en gabinete.</li><li>Cancelaciones con aviso previo para optimizar la agenda de las profesionales.</li>",
     trustProtoH: "Protocolo de Verificación",
     trustProtoP: "El sello <strong>✓ Privé Verificado</strong> garantiza la autenticidad del material fotográfico mediante validación previa de identidad, protegiendo a los usuarios contra perfiles falsos.",
-    verifiedTag: "✓ Sello Oficial Privé Verificado",
+    verifiedTag: "✓ Official Privé Verified Seal",
     lblMod: "Modalidad / Zona",
     lblBio: "Descripción",
     lblSch: "Días y Horarios",
@@ -290,15 +290,20 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Función para barajar los perfiles de manera independiente en cada categoría al cargar
+// Función corregida: mezcla aleatoriamente las tarjetas dentro de cada categoría de manera independiente
 function shuffleProfiles() {
-  const grids = document.querySelectorAll('.category-content .grid-2');
-  grids.forEach(grid => {
+  const categoryContents = document.querySelectorAll('.category-content');
+  categoryContents.forEach(content => {
+    const grid = content.querySelector('.grid-2');
+    if (!grid) return;
+    
+    // Obtenemos todas las tarjetas de perfil y los espacios libres/placeholders
     const cards = Array.from(grid.children);
-    // Algoritmo de mezcla Fisher-Yates
+    
+    // Algoritmo Fisher-Yates para barajar
     for (let i = cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      grid.appendChild(cards[j]); // Reorganiza los elementos aleatoriamente dentro del grid
+      grid.appendChild(cards[j]);
     }
   });
 }
