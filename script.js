@@ -64,7 +64,7 @@ const translations = {
     trustUserList: "<li>Coordinación transparente y directa vía WhatsApp sin intermediarios.</li><li>Respeto mutuo y trato cordial durante la atención en gabinete.</li><li>Cancelaciones con aviso previo para optimizar la agenda de las profesionales.</li>",
     trustProtoH: "Protocolo de Verificación",
     trustProtoP: "El sello <strong>✓ Privé Verificado</strong> garantiza la autenticidad del material fotográfico mediante validación previa de identidad, protegiendo a los usuarios contra perfiles falsos.",
-    verifiedTag: "✓ Official Privé Verified Seal",
+    verifiedTag: "✓ Sello Oficial Privé Verificado",
     lblMod: "Modalidad / Zona",
     lblBio: "Descripción",
     lblSch: "Días y Horarios",
@@ -290,25 +290,40 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Función corregida: mezcla aleatoriamente las tarjetas dentro de cada categoría de manera independiente
-function shuffleProfiles() {
+// Función integral que se ejecuta al cargar: baraja perfiles Y comprueba el cartel +18
+function initApp() {
+  // 1. Barajar perfiles de manera independiente en cada categoría
   const categoryContents = document.querySelectorAll('.category-content');
   categoryContents.forEach(content => {
     const grid = content.querySelector('.grid-2');
     if (!grid) return;
     
-    // Obtenemos todas las tarjetas de perfil y los espacios libres/placeholders
     const cards = Array.from(grid.children);
-    
-    // Algoritmo Fisher-Yates para barajar
     for (let i = cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       grid.appendChild(cards[j]);
     }
   });
+
+  // 2. Control del cartel de +18 con memoria (localStorage)
+  const ageGate = document.getElementById('age-gate');
+  if (ageGate) {
+    if (localStorage.getItem('prive_age_verified') === 'true') {
+      ageGate.classList.add('hidden');
+    }
+  }
 }
 
-document.addEventListener('DOMContentLoaded', shuffleProfiles);
+document.addEventListener('DOMContentLoaded', initApp);
+
+// Función modificada para guardar que ya aceptó la edad
+function acceptAge() {
+  localStorage.setItem('prive_age_verified', 'true');
+  const ageGate = document.getElementById('age-gate');
+  if (ageGate) {
+    ageGate.classList.add('hidden');
+  }
+}
 
 function cleanInput(str) {
   return str.replace(/[&<>"']/g, function(m) {
@@ -621,10 +636,6 @@ function openProfileById(id) {
   document.getElementById('profile-modal').classList.remove('hidden');
 }
 
-function acceptAge() {
-  document.getElementById('age-gate').classList.add('hidden');
-}
-
 function closeProfile() {
   document.getElementById('profile-modal').classList.add('hidden');
   window.currentOpenProfileId = null;
@@ -787,12 +798,12 @@ function showCategory(sectionId, btn) {
   if (btn) updateActiveTab(btn);
   document.querySelectorAll('.category-block').forEach(cat => cat.classList.add('hidden'));
   
-  const targetSec = document.getElementById(sectionId);
+  let targetSec = document.getElementById(sectionId);
   if (targetSec) {
     targetSec.classList.remove('hidden');
-    const parentBlock = targetSec.closest('.category-block');
+    let parentBlock = targetSec.closest('.category-block');
     if (parentBlock) parentBlock.classList.remove('hidden');
-    const icon = document.getElementById('icon-' + sectionId);
+    let icon = document.getElementById('icon-' + sectionId);
     if (icon) icon.innerText = '▼';
   }
 }
