@@ -488,6 +488,35 @@
   </footer>
 
   <script src="./script.js"></script>
+  <script type="module">
+  // Importamos las funciones necesarias de Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+  // Configuración de tu proyecto
+  const firebaseConfig = {
+    apiKey: "AIzaSyCrEAtItwKzcugKYu9Vsda_ELBi882NCP0",
+    authDomain: "masajistasprive-50055.firebaseapp.com",
+    projectId: "masajistasprive-50055",
+    storageBucket: "masajistasprive-50055.firebasestorage.app",
+    messagingSenderId: "20216583619",
+    appId: "1:20216583619:web:36156aba8e2a0ac6795976",
+    measurementId: "G-MC0G63PBVH"
+  };
+
+  // Inicializar Firebase y Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Dejamos esto listo para usar en tu script principal
+  window.db = db;
+  window.collection = collection;
+  window.addDoc = addDoc;
+  window.onSnapshot = onSnapshot;
+  window.query = query;
+  window.orderBy = orderBy;
+</script>
+
 </body>
 </html>
 
