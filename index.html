@@ -573,6 +573,72 @@
     }
   });
 </script>
+  <script>
+  // Parche para guardar y leer los temas del foro en Firestore
+  document.addEventListener("DOMContentLoaded", () => {
+    const createBtn = document.querySelector('button[onclick*="createForumThread"]');
+    if (createBtn) {
+      createBtn.removeAttribute('onclick');
+      createBtn.addEventListener('click', async () => {
+        const titleInput = document.getElementById('forum-title-input');
+        const catSelect = document.getElementById('forum-category-select');
+        const bodyInput = document.getElementById('forum-body-input');
+        
+        if (!titleInput || !bodyInput) return;
+
+        const title = titleInput.value.trim();
+        const category = catSelect ? catSelect.value : 'General';
+        const body = bodyInput.value.trim();
+
+        if (!title || !body) {
+          alert('Por favor completa el título y el contenido.');
+          return;
+        }
+
+        try {
+          await window.addDoc(window.collection(window.db, "foros"), {
+            title: title,
+            category: category,
+            body: body,
+            timestamp: new Date()
+          });
+          titleInput.value = '';
+          bodyInput.value = '';
+        } catch (e) {
+          console.error("Error al publicar tema:", e);
+        }
+      });
+    }
+
+    // Cargar los temas del foro en tiempo real
+    if (window.db) {
+      const threadContainer = document.getElementById('forum-threads-list');
+      if (threadContainer) {
+        const qF = window.query(window.collection(window.db, "foros"), window.orderBy("timestamp", "desc"));
+        window.onSnapshot(qF, (snapshot) => {
+          if (snapshot.empty) return;
+          threadContainer.innerHTML = '';
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            const card = document.createElement('div');
+            card.className = 'forum-thread-card';
+            card.innerHTML = `
+              <h4 class="forum-thread-title">${data.title}</h4>
+              <div class="forum-thread-meta">
+                <span>Por: <strong>Usuario_Privé</strong></span>
+                <span>Categoría: <strong>${data.category}</strong></span>
+                <span>Reciente</span>
+              </div>
+              <p class="forum-thread-body">${data.body}</p>
+            `;
+            threadContainer.appendChild(card);
+          });
+        });
+      }
+    }
+  });
+</script>
+
 
 
 </body>
