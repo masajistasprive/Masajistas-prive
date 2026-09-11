@@ -1,4 +1,3 @@
-
 let currentLang = 'es';
 
 const translations = {
@@ -291,9 +290,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// Función integral que se ejecuta al cargar: baraja perfiles Y comprueba el cartel +18
 function initApp() {
-  // 1. Barajar perfiles de manera independiente en cada categoría
   const categoryContents = document.querySelectorAll('.category-content');
   categoryContents.forEach(content => {
     const grid = content.querySelector('.grid-2');
@@ -306,7 +303,6 @@ function initApp() {
     }
   });
 
-  // 2. Control del cartel de +18 con memoria (localStorage)
   const ageGate = document.getElementById('age-gate');
   if (ageGate) {
     if (localStorage.getItem('prive_age_verified') === 'true') {
@@ -317,7 +313,6 @@ function initApp() {
 
 document.addEventListener('DOMContentLoaded', initApp);
 
-// Función modificada para guardar que ya aceptó la edad
 function acceptAge() {
   localStorage.setItem('prive_age_verified', 'true');
   const ageGate = document.getElementById('age-gate');
@@ -583,14 +578,7 @@ function openProfileById(id) {
   if (!p) return;
 
   window.currentOpenProfileId = id;
-  
-  const modal = document.getElementById('profile-modal');
-  if (modal) {
-    modal.scrollTop = 0;
-  }
-  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-
-  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
 
   if (history.pushState) {
     history.pushState({ profile: id }, null, '#' + id);
@@ -641,20 +629,21 @@ function openProfileById(id) {
     container.appendChild(wrapper);
   });
 
-    loadEmptyComments();
+  loadEmptyComments();
+  
   const modal = document.getElementById('profile-modal');
   if (modal) {
-    modal.classList.remove('hidden');
     modal.scrollTop = 0;
-    setTimeout(() => { modal.scrollTop = 0; }, 10);
+    modal.classList.remove('hidden');
   }
-  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 }
 
-
-
 function closeProfile() {
-  document.getElementById('profile-modal').classList.add('hidden');
+  const modal = document.getElementById('profile-modal');
+  if (modal) {
+    modal.scrollTop = 0;
+    modal.classList.add('hidden');
+  }
   window.currentOpenProfileId = null;
   if (window.location.hash && window.location.hash !== '#search') {
     history.back();
