@@ -583,10 +583,12 @@ function openProfileById(id) {
   if (!p) return;
 
   window.currentOpenProfileId = id;
-window.scrollTo({ top: 0, behavior: 'instant' });
+  window.scrollTo({ top: 0, behavior: 'instant' });
 
-const modal = document.getElementById('profile-modal');
-if (modal) modal.scrollTop = 0;
+  const modal = document.getElementById('profile-modal');
+  if (modal) {
+    modal.scrollTop = 0;
+  }
 
   if (history.pushState) {
     history.pushState({ profile: id }, null, '#' + id);
@@ -640,6 +642,7 @@ if (modal) modal.scrollTop = 0;
   loadEmptyComments();
   document.getElementById('profile-modal').classList.remove('hidden');
 }
+
 
 function closeProfile() {
   document.getElementById('profile-modal').classList.add('hidden');
