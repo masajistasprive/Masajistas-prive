@@ -666,6 +666,7 @@ window.addEventListener('popstate', function(event) {
   window.scrollTo({ top: 0, behavior: 'instant' });
 });
 
+
 function openLightbox(startIndex) {
   const slider = document.getElementById('lightbox-slider');
   slider.innerHTML = '';
