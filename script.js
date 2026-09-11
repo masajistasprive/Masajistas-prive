@@ -583,6 +583,10 @@ function openProfileById(id) {
   if (!p) return;
 
   window.currentOpenProfileId = id;
+window.scrollTo({ top: 0, behavior: 'instant' });
+
+const modal = document.getElementById('profile-modal');
+if (modal) modal.scrollTop = 0;
 
   if (history.pushState) {
     history.pushState({ profile: id }, null, '#' + id);
