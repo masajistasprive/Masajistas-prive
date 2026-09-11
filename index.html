@@ -475,9 +475,12 @@
     </div>
   </div>
 
-  <div id="lightbox" class="lightbox hidden">
+<!-- Visor de Pantalla Completa (Lightbox) con Flechas -->
+<div class="lightbox" id="lightbox">
     <button class="lightbox-arrow lightbox-prev" onclick="prevLightboxSlide()">&#10094;</button>
-    <div id="lightbox-slider" class="lightbox-slider"></div>
+    <div class="lightbox-slider" id="lightboxSlider">
+        <!-- Las fotos se cargan dinámicamente acá -->
+    </div>
     <button class="lightbox-arrow lightbox-next" onclick="nextLightboxSlide()">&#10095;</button>
 </div>
   
