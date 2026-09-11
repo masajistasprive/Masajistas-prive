@@ -14,15 +14,6 @@
   <meta name="description" content="Portal de masajes en Buenos Aires. Espacios privados, gabinetes y atención independiente en CABA.">
   <meta name="keywords" content="masajistas prive, masajes buenos aires, masajistas caba, gabinete privado, alquiler de gabinetes, publicar masajista">
   <meta name="robots" content="index, follow">
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DXX740HP41"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DXX740HP41');
-</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -91,9 +82,10 @@
 
  <header>
     <div class="logo-container">
-      <img src="./logo.png" alt="Masajistas Privé" style="width: 500px; max-width: 90%; height: auto;">
+      <img src="./logo.png" alt="Masajistas Privé" style="width: 380px; height: auto;">
     </div>
   </header>
+
   <div class="container">
 
     <div class="stories-container">
@@ -475,14 +467,10 @@
     </div>
   </div>
 
-<!-- Visor de Pantalla Completa (Lightbox) con Flechas -->
-<div class="lightbox" id="lightbox">
-    <button class="lightbox-arrow lightbox-prev" onclick="prevLightboxSlide()">&#10094;</button>
-    <div class="lightbox-slider" id="lightboxSlider">
-        <!-- Las fotos se cargan dinámicamente acá -->
-    </div>
-    <button class="lightbox-arrow lightbox-next" onclick="nextLightboxSlide()">&#10095;</button>
-</div>
+  <div id="lightbox" class="lightbox hidden">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <div id="lightbox-slider" class="lightbox-slider"></div>
+  </div>
   
   <div class="social-channels-section" style="text-align: center; margin: 40px 0; padding: 25px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); border-radius: 12px;">
       <h3 style="color: var(--gold-color); font-family: 'Playfair Display', serif; margin-bottom: 15px; font-size: 1.2rem;">Canales Oficiales & Comunidad</h3>
@@ -655,4 +643,3 @@
 
 </body>
 </html>
-
