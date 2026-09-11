@@ -796,15 +796,20 @@ function showAllCategories(btn) {
 }
 
 function showCategory(sectionId, btn) {
-  if (btn) updateActiveTab(btn);
-  document.querySelectorAll('.category-block').forEach(cat => cat.classList.add('hidden'));
-  
-  let targetSec = document.getElementById(sectionId);
-  if (targetSec) {
-    targetSec.classList.remove('hidden');
-    let parentBlock = targetSec.closest('.category-block');
-    if (parentBlock) parentBlock.classList.remove('hidden');
-    let icon = document.getElementById('icon-' + sectionId);
-    if (icon) icon.innerText = '▼';
-  }
+    if (btn) updateActiveTab(btn);
+    document.querySelectorAll('.category-block').forEach(cat => cat.classList.add('hidden'));
+    
+    let targetSec = document.getElementById(sectionId);
+    if (targetSec) {
+        targetSec.classList.remove('hidden');
+        let parentBlock = targetSec.closest('.category-block');
+        if (parentBlock) parentBlock.classList.remove('hidden');
+        let icon = document.getElementById('icon-' + sectionId);
+        if (icon) icon.innerText = '▼';
+    }
+}
+
+function updateActiveTab(btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 }
