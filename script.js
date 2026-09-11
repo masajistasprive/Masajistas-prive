@@ -260,9 +260,10 @@ function toggleLanguage() {
   safeSet('txt-floating-cta', t.floatingCta, 'innerText');
   safeSet('txt-footer', t.footer, 'innerHTML');
 
-  const modal = document.getElementById('profile-modal');
-  if (modal && !modal.classList.contains('hidden') && window.currentOpenProfileId) {
-    openProfileById(window.currentOpenProfileId);
+    const modal = document.getElementById('profile-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.scrollTop = 0;
   }
 }
 
