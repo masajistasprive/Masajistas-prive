@@ -95,10 +95,9 @@ function quickExit() {
 }
 
 function initApp() {
-    const ageGate = document.getElementById('age-gate');
-    if (ageGate && localStorage.getItem('prive_age_verified') === 'true') {
-        ageGate.style.display = 'none';
-        ageGate.classList.add('hidden');
+    if (localStorage.getItem('prive_age_verified') === 'true') {
+        const ageGate = document.getElementById('age-gate');
+        if (ageGate) ageGate.remove();
     }
 
     const categoryContents = document.querySelectorAll('.category-content');
@@ -119,8 +118,9 @@ function acceptAge() {
     localStorage.setItem('prive_age_verified', 'true');
     const ageGate = document.getElementById('age-gate');
     if (ageGate) {
-        ageGate.style.display = 'none';
-        ageGate.classList.add('hidden');
+        ageGate.remove();
+    } else {
+        location.reload();
     }
 }
 
