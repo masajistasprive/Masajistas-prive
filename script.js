@@ -812,4 +812,4 @@ function showCategory(sectionId, btn) {
 function updateActiveTab(activeBtn) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   if (activeBtn) activeBtn.classList.add('active');
-}
+    }
