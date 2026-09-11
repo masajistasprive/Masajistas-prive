@@ -641,9 +641,16 @@ function openProfileById(id) {
     container.appendChild(wrapper);
   });
 
-  loadEmptyComments();
-  document.getElementById('profile-modal').classList.remove('hidden');
+    loadEmptyComments();
+  const modal = document.getElementById('profile-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.scrollTop = 0;
+    setTimeout(() => { modal.scrollTop = 0; }, 10);
+  }
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
 }
+
 
 
 function closeProfile() {
