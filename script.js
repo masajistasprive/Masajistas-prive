@@ -291,6 +291,10 @@ document.addEventListener('keydown', e => {
 });
 
 function initApp() {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
   const categoryContents = document.querySelectorAll('.category-content');
   categoryContents.forEach(content => {
     const grid = content.querySelector('.grid-2');
@@ -302,6 +306,14 @@ function initApp() {
       grid.appendChild(cards[j]);
     }
   });
+
+  const ageGate = document.getElementById('age-gate');
+  if (ageGate) {
+    if (localStorage.getItem('prive_age_verified') === 'true') {
+      ageGate.classList.add('hidden');
+    }
+  }
+}
 
   const ageGate = document.getElementById('age-gate');
   if (ageGate) {
