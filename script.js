@@ -658,10 +658,12 @@ window.addEventListener('popstate', function(event) {
   if (!lightbox.classList.contains('hidden')) {
     closeLightbox();
   } else if (!modal.classList.contains('hidden')) {
+    modal.scrollTop = 0;
     modal.classList.add('hidden');
   } else if (!drawer.classList.contains('hidden')) {
     drawer.classList.add('hidden');
   }
+  window.scrollTo({ top: 0, behavior: 'instant' });
 });
 
 function openLightbox(startIndex) {
