@@ -808,7 +808,65 @@ function showCategory(sectionId, btn) {
     if (icon) icon.innerText = '▼';
   }
 }
+// --- Carrusel y Visor de Pantalla Completa con Flechas ---
+let currentLightboxIndex = 0;
 
+function openLightbox(index) {
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox) return;
+    currentLightboxIndex = index;
+    lightbox.classList.add("active");
+    scrollToLightboxSlide(currentLightboxIndex);
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox) return;
+    lightbox.classList.remove("active");
+}
+
+function nextLightboxSlide() {
+    const slider = document.getElementById("lightboxSlider");
+    if (!slider) return;
+    const slides = slider.getElementsByClassName("lightbox-slide");
+    if (slides.length === 0) return;
+    
+    currentLightboxIndex = (currentLightboxIndex + 1) % slides.length;
+    scrollToLightboxSlide(currentLightboxIndex);
+}
+
+function prevLightboxSlide() {
+    const slider = document.getElementById("lightboxSlider");
+    if (!slider) return;
+    const slides = slider.getElementsByClassName("lightbox-slide");
+    if (slides.length === 0) return;
+    
+    currentLightboxIndex = (currentLightboxIndex - 1 + slides.length) % slides.length;
+    scrollToLightboxSlide(currentLightboxIndex);
+}
+
+function scrollToLightboxSlide(index) {
+    const slider = document.getElementById("lightboxSlider");
+    if (!slider) return;
+    const slides = slider.getElementsByClassName("lightbox-slide");
+    if (slides[index]) {
+        slider.scrollTo({
+            left: slides[index].offsetLeft,
+            behavior: 'smooth'
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById("lightbox");
+    if (lightbox) {
+        lightbox.addEventListener("click", (event) => {
+            if (event.target === lightbox || event.target.id === 'lightboxSlider') {
+                closeLightbox();
+            }
+        });
+    }
+});
 function updateActiveTab(activeBtn) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   if (activeBtn) activeBtn.classList.add('active');
