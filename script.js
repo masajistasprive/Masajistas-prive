@@ -583,11 +583,13 @@ function openProfileById(id) {
   if (!p) return;
 
   window.currentOpenProfileId = id;
-  window.scrollTo({ top: 0, behavior: 'instant' });
-
+  
   const modal = document.getElementById('profile-modal');
   if (modal) {
     modal.scrollTop = 0;
+  }
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
   }
 
   if (history.pushState) {
