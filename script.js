@@ -643,17 +643,16 @@ function openProfileById(id) {
 
   loadEmptyComments();
   
-  const modal = document.getElementById('profile-modal');
+    const modal = document.getElementById('profile-modal');
   if (modal) {
-    modal.scrollTop = 0;
     modal.classList.remove('hidden');
+    modal.scrollTop = 0; 
   }
-}
 
 function closeProfile() {
   const modal = document.getElementById('profile-modal');
   if (modal) {
-    modal.scrollTop = 0;
+    modal.scrollTop = 0; // Limpia la posición al cerrar
     modal.classList.add('hidden');
   }
   window.currentOpenProfileId = null;
