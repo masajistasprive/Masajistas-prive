@@ -95,6 +95,12 @@ function quickExit() {
 }
 
 function initApp() {
+    const ageGate = document.getElementById('age-gate');
+    if (ageGate && localStorage.getItem('prive_age_verified') === 'true') {
+        ageGate.style.display = 'none';
+        ageGate.classList.add('hidden');
+    }
+
     const categoryContents = document.querySelectorAll('.category-content');
     categoryContents.forEach(content => {
         const grid = content.querySelector('.grid-2');
@@ -108,6 +114,15 @@ function initApp() {
 }
 
 document.addEventListener('DOMContentLoaded', initApp);
+
+function acceptAge() {
+    localStorage.setItem('prive_age_verified', 'true');
+    const ageGate = document.getElementById('age-gate');
+    if (ageGate) {
+        ageGate.style.display = 'none';
+        ageGate.classList.add('hidden');
+    }
+}
 
 let currentImages = [];
 const profilesData = {
@@ -131,37 +146,27 @@ function openProfileById(id) {
     window.currentOpenProfileId = id;
     currentImages = p.images;
     document.getElementById('modal-name').innerText = p.name + ' (' + p.neighborhood + ')';
-    
     const tagVerified = document.getElementById('modal-verified-tag');
     if (tagVerified) tagVerified.innerText = translations[currentLang].verifiedTag;
-    
     const modEl = document.getElementById('modal-modality');
     if (modEl) modEl.innerText = p.modality[currentLang] + ' - ' + p.neighborhood;
-    
     const bioEl = document.getElementById('modal-bio');
     if (bioEl) bioEl.innerText = p.bio[currentLang];
-    
     const schEl = document.getElementById('modal-schedule');
     if (schEl) schEl.innerText = p.schedule[currentLang];
-    
     const eqEl = document.getElementById('modal-equipment');
     if (eqEl) eqEl.innerText = p.equipment[currentLang];
-    
     const servEl = document.getElementById('modal-services');
     if (servEl) servEl.innerText = p.services[currentLang];
-    
     const payEl = document.getElementById('modal-payments');
     if (payEl) payEl.innerText = p.payments[currentLang];
-    
     const bookEl = document.getElementById('modal-booking');
     if (bookEl) bookEl.innerText = p.booking[currentLang];
-    
     const wspMsg = encodeURIComponent(`¡Hola ${p.name}! Te vi en Masajistas Privé y quería consultar por un turno.`);
     const callBtn = document.getElementById('modal-call-btn');
     if (callBtn) callBtn.href = `tel:+${p.phone}`;
     const waBtn = document.getElementById('modal-wa-btn');
     if (waBtn) waBtn.href = `https://wa.me/${p.phone}?text=${wspMsg}`;
-    
     const container = document.getElementById('modal-gallery-container');
     if (container) {
         container.innerHTML = '';
@@ -176,7 +181,6 @@ function openProfileById(id) {
             container.appendChild(wrapper);
         });
     }
-    
     document.getElementById('profile-modal').classList.remove('hidden');
 }
 
